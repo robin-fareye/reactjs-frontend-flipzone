@@ -7,7 +7,7 @@ import ProductDetails from './component/ProductDetails/ProductDetails';
 function App() {
   return (
     <div>
-      <Cart/>
+      <ProductCatalouge/>
     </div>
   );
 }
