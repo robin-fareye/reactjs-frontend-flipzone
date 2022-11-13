@@ -1,0 +1,15 @@
+.main-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.card-container {
+    height: 12%;
+    width: 10%;
+    border: 1px solid black;
+}
+
+.image-item-catalouge {
+    height: 200px;
+    width: 50%;
+}
