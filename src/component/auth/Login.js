@@ -7,40 +7,44 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import {signUpUser,signInUser} from "../../api/Login"
+import { signUpUser, signInUser } from "../../api/Login"
 import axios from "axios"
 const Login = () => {
 
     const [isLogin, setIsLogin] = useState(false)
-    const [formData,setFormData]=useState({userName:"",email:"",password:"",confirmPassword:"",userType:"buyer"})
-    const [formDataError,setFormDataError]=useState({})
-    const handleChange=(event)=>{
-        const {name,value}=event?.target
-        setFormData((prevData)=>{
-            return ({...prevData,
-            [name]:value})
+    const [formData, setFormData] = useState({ userName: "", email: "", password: "", confirmPassword: "", userType: "ROLE_USER" })
+    const [formDataError, setFormDataError] = useState({})
+    const handleChange = (event) => {
+        const { name, value } = event?.target
+        setFormData((prevData) => {
+            return ({
+                ...prevData,
+                [name]: value
+            })
         })
         //validateFormData()
     }
 
-    const handleSignIn=()=>{
+    const handleSignIn = () => {
         // validateFormData()
         // const payLoad={
         //     username:formData.email,
         //     password:formData.password
         // }
-        const payLoad=`username=${formData.email}&password=${formData.password}`
-        signInUser(payLoad)
+        if (validateFormDataForLogin()) {
+            const payLoad = `username=${formData.email}&password=${formData.password}`
+            signInUser(payLoad)
+        }
     }
 
-    const handleSignUp=()=>{
-        
-        if(validateFormData()){
-            const payLoad={
-                userName:formData.userName,
-                userEmailId:formData.email,
-                password:formData.password,
-                role:formData.userType
+    const handleSignUp = () => {
+
+        if (validateFormData()) {
+            const payLoad = {
+                userName: formData.userName,
+                userEmailId: formData.email,
+                password: formData.password,
+                role: formData.userType
             }
 
             signUpUser(payLoad)
@@ -48,70 +52,99 @@ const Login = () => {
 
         }
     }
-    const handleSignUpTextButton=()=>{
-        setIsLogin((prevState)=>{
+    const handleSignUpTextButton = () => {
+        setIsLogin((prevState) => {
             return !prevState
         })
     }
 
-    const validateFormData=()=>{
-        let count=0;
-        if(formData.userName===""){
-            setFormDataError((prevState)=>{
+    const validateFormDataForLogin=()=>{
+        let count=0
+        if (formData.email === "") {
+            count++
+            setFormDataError((prevState) => {
+                return { ...prevState, emailError: true }
+            })
+        }
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, emailError: false }
+            })
+        }
+        if (formData.password === "") {
+            count++
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordError: true }
+            })
+        }
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordError: false }
+            })
+        }
+        if (count > 0) {
+            return false
+        }
+        return true
+    }
+    const validateFormData = () => {
+        let count = 0;
+        if (formData.userName === "") {
+            setFormDataError((prevState) => {
                 count++
-                return {...prevState,userNameError:true}
+                return { ...prevState, userNameError: true }
             })
         }
-        else{
-            setFormDataError((prevState)=>{
-                return {...prevState,userNameError:false}
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, userNameError: false }
             })
         }
-        if(formData.email===""){
+        if (formData.email === "") {
             count++
-            setFormDataError((prevState)=>{
-                return {...prevState,emailError:true}
+            setFormDataError((prevState) => {
+                return { ...prevState, emailError: true }
             })
         }
-        else{
-            setFormDataError((prevState)=>{
-                return {...prevState,emailError:false}
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, emailError: false }
             })
         }
-        if(formData.password===""){
+        if (formData.password === "") {
             count++
-            setFormDataError((prevState)=>{
-                return {...prevState,passwordError:true}
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordError: true }
             })
         }
-        else{
-            setFormDataError((prevState)=>{
-                return {...prevState,passwordError:false}
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordError: false }
             })
         }
-        if(formData.confirmPassword===""){
+        if (formData.confirmPassword === "") {
             count++
-            setFormDataError((prevState)=>{
-                return {...prevState,confirmPasswordError:true}
+            setFormDataError((prevState) => {
+                return { ...prevState, confirmPasswordError: true }
             })
         }
-        else{
-            setFormDataError((prevState)=>{
-                return {...prevState,confirmPasswordError:false}
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, confirmPasswordError: false }
             })
         }
-        if(formData.password!==formData.confirmPassword){
+        if (formData.password !== formData.confirmPassword) {
             count++
-            setFormDataError((prevState)=>{
-                return {...prevState,passwordNotMatchedError:true}
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordNotMatchedError: true }
             })
         }
-        else{
-            setFormDataError((prevState)=>{
-                return {...prevState,passwordNotMatchedError:false}
+        else {
+            setFormDataError((prevState) => {
+                return { ...prevState, passwordNotMatchedError: false }
             })
         }
-        if(count>0){
+        if (count > 0) {
             return false
         }
         return true
@@ -134,33 +167,33 @@ const Login = () => {
                     <Typography
                         variant='h3'
                         className='welcome-text'>Welcome to FlipZone</Typography>
-                        
+
 
                     <Typography
                         variant='body1'
                         className='welcome-subtext'>{isLogin ? "Login with your credentials" : "Sign Up to continue"}</Typography>
                     {!isLogin && <TextField
-                        required onChange={(e)=>handleChange(e)} 
+                        required onChange={(e) => handleChange(e)}
                         error={formDataError.userNameError}
-                        value={formData.userName} name='userName' 
+                        value={formData.userName} name='userName'
                         className='auth-text-field' label="Name" variant="outlined" />}
                     <TextField
-                        required onChange={(e)=>handleChange(e)} 
+                        required onChange={(e) => handleChange(e)}
                         error={formDataError.emailError}
-                        value={formData.email} name='email' className='auth-text-field' 
+                        value={formData.email} name='email' className='auth-text-field'
                         label="Email Address" variant="outlined" />
                     <TextField
-                        required onChange={(e)=>handleChange(e)} 
-                        value={formData.password} name='password' 
+                        required onChange={(e) => handleChange(e)}
+                        value={formData.password} name='password'
                         error={formDataError.passwordError}
-                        className='auth-text-field' label="Password" 
+                        className='auth-text-field' label="Password"
                         type="password" variant="outlined" />
                     {!isLogin && <TextField
-                        required onChange={(e)=>handleChange(e)} 
+                        required onChange={(e) => handleChange(e)}
                         error={formDataError.confirmPasswordError || formDataError.passwordNotMatchedError}
-                        helperText={formDataError.passwordNotMatchedError?"Password did'nt matched":""}
-                        value={formData.confirmPassword} name='confirmPassword' 
-                        className='auth-text-field' label="Confirm Password" 
+                        helperText={formDataError.passwordNotMatchedError ? "Password did'nt matched" : ""}
+                        value={formData.confirmPassword} name='confirmPassword'
+                        className='auth-text-field' label="Confirm Password"
                         variant="outlined" />}
 
                     {!isLogin && <FormControl>
@@ -173,10 +206,10 @@ const Login = () => {
                         >
                             <FormControlLabel className='user-type-item' value="ROLE_USER" control={<Radio />} label="Buyer" />
                             <FormControlLabel className='user-type-item' value="ROLE_RETAILER" control={<Radio />} label="Seller" />
-            
+
                         </RadioGroup>
                     </FormControl>}
-                    <Button variant="contained" onClick={isLogin?handleSignIn:handleSignUp} className="login-button">{isLogin ? "Log In" : "Sign Up"}</Button>
+                    <Button variant="contained" onClick={isLogin ? handleSignIn : handleSignUp} className="login-button">{isLogin ? "Log In" : "Sign Up"}</Button>
                     <Box className='sign-up-container'>
                         <Typography className='sign-up-text'>{isLogin ? "Don't have an account? " : "Already have an account? "}</Typography>
                         <Button onClick={handleSignUpTextButton} variant="text" className="sign-up-text-button">{!isLogin ? "Log In" : "Sign Up"}</Button>
