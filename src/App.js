@@ -11,9 +11,10 @@ import CheckoutPage from './component/Checkout/CheckoutPage';
 function App() {
   return (
     <div>
-
-      <ProductCatalouge/>
-
+      {/* <Header />
+      <Category />
+<Login/> */}
+<Cart/>
     </div>
   );
 }

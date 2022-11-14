@@ -1,8 +1,18 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { getAllProducts } from '../../api/ProductApi' 
+import React, { useEffect, useState } from 'react'
 
 const ProductCatalouge = () => {
 
+    const [products,setProducts]=useState([])
+
+    const getProductList=async()=>{
+       let res=await getAllProducts()
+       setProducts(res?.data)
+    }
+    useEffect(()=>{
+        getProductList()
+    },[])
     const getCardItem=(item)=>{
         return (
         <Box className='card-container'>

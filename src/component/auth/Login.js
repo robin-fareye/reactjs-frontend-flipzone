@@ -7,6 +7,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import {signUpUser,signInUser} from "../../api/Login"
+import axios from "axios"
 const Login = () => {
 
     const [isLogin, setIsLogin] = useState(false)
@@ -22,11 +24,29 @@ const Login = () => {
     }
 
     const handleSignIn=()=>{
-        validateFormData()
+        // validateFormData()
+        // const payLoad={
+        //     username:formData.email,
+        //     password:formData.password
+        // }
+        const payLoad=`username=${formData.email}&password=${formData.password}`
+        signInUser(payLoad)
     }
+
     const handleSignUp=()=>{
         
-        validateFormData()
+        if(validateFormData()){
+            const payLoad={
+                userName:formData.userName,
+                userEmailId:formData.email,
+                password:formData.password,
+                role:formData.userType
+            }
+
+            signUpUser(payLoad)
+
+
+        }
     }
     const handleSignUpTextButton=()=>{
         setIsLogin((prevState)=>{
@@ -35,8 +55,10 @@ const Login = () => {
     }
 
     const validateFormData=()=>{
+        let count=0;
         if(formData.userName===""){
             setFormDataError((prevState)=>{
+                count++
                 return {...prevState,userNameError:true}
             })
         }
@@ -46,6 +68,7 @@ const Login = () => {
             })
         }
         if(formData.email===""){
+            count++
             setFormDataError((prevState)=>{
                 return {...prevState,emailError:true}
             })
@@ -56,6 +79,7 @@ const Login = () => {
             })
         }
         if(formData.password===""){
+            count++
             setFormDataError((prevState)=>{
                 return {...prevState,passwordError:true}
             })
@@ -66,6 +90,7 @@ const Login = () => {
             })
         }
         if(formData.confirmPassword===""){
+            count++
             setFormDataError((prevState)=>{
                 return {...prevState,confirmPasswordError:true}
             })
@@ -76,6 +101,7 @@ const Login = () => {
             })
         }
         if(formData.password!==formData.confirmPassword){
+            count++
             setFormDataError((prevState)=>{
                 return {...prevState,passwordNotMatchedError:true}
             })
@@ -85,6 +111,11 @@ const Login = () => {
                 return {...prevState,passwordNotMatchedError:false}
             })
         }
+        if(count>0){
+            return false
+        }
+        return true
+
     }
     return (
         <Box className="main-container">
@@ -132,7 +163,7 @@ const Login = () => {
                         className='auth-text-field' label="Confirm Password" 
                         variant="outlined" />}
 
-                    <FormControl>
+                    {!isLogin && <FormControl>
                         <FormLabel id="user-type">User Type:</FormLabel>
                         <RadioGroup
                             row
@@ -140,11 +171,11 @@ const Login = () => {
                             value={formData.userType}
                             onChange={handleChange}
                         >
-                            <FormControlLabel className='user-type-item' value="buyer" control={<Radio />} label="Buyer" />
-                            <FormControlLabel className='user-type-item' value="seller" control={<Radio />} label="Seller" />
+                            <FormControlLabel className='user-type-item' value="ROLE_USER" control={<Radio />} label="Buyer" />
+                            <FormControlLabel className='user-type-item' value="ROLE_RETAILER" control={<Radio />} label="Seller" />
             
                         </RadioGroup>
-                    </FormControl>
+                    </FormControl>}
                     <Button variant="contained" onClick={isLogin?handleSignIn:handleSignUp} className="login-button">{isLogin ? "Log In" : "Sign Up"}</Button>
                     <Box className='sign-up-container'>
                         <Typography className='sign-up-text'>{isLogin ? "Don't have an account? " : "Already have an account? "}</Typography>
