@@ -4,10 +4,11 @@ import Login from './component/auth/Login';
 import Cart from './component/Cart/Cart';
 import ProductCatalouge from './component/ProductCatalogue/ProductCatalouge';
 import ProductDetails from './component/ProductDetails/ProductDetails';
+import CheckoutPage from './component/Checkout/CheckoutPage';
 function App() {
   return (
     <div>
-      <ProductCatalouge/>
+      <CheckoutPage/>
     </div>
   );
 }

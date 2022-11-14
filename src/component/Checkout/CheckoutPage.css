@@ -1,0 +1,46 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.checkout-container {
+    display: flex;
+
+}
+
+.address-container {
+    width: 50%;
+    height: 60px;
+    padding: 20px;
+}
+
+.payment-details {
+    padding: 20px;
+    width: 50%;
+}
+
+.address-table {
+    border: 1px solid rgba(139, 138, 138, 0.664);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-fields {
+    margin: 10px !important;
+}
+
+.payment-table {
+    border: 1px solid rgba(139, 138, 138, 0.664);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-button {
+
+    width: 30%;
+    margin-top: 20px !important;
+    margin-left: 11px !important;
+}
