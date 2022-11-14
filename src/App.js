@@ -11,10 +11,10 @@ import CheckoutPage from './component/Checkout/CheckoutPage';
 function App() {
   return (
     <div>
-      {/* <Header />
+      <Header />
       <Category />
-<Login/> */}
-<Cart/>
+<Login/>
+{/* <Cart/> */}
     </div>
   );
 }
