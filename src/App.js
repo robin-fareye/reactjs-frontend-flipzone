@@ -10,9 +10,7 @@ import ProductDetails from './component/ProductDetails/ProductDetails';
 function App() {
   return (
     <div>
-
-      <ProductCatalouge/>
-
+<ProductCatalouge/>
     </div>
   );
 }
