@@ -1,0 +1,90 @@
+body{
+    padding: 10px 70px;
+}
+.main-container{
+    display: flex;
+    height: 100vh;
+}
+.item-list{
+    width: 65%;
+}
+.order-details{
+    width: 35%;
+}
+.order-list-header{
+    height: 60px;
+    border: 1px solid rgb(172, 171, 171);
+   
+}
+.item-count{
+    font-weight: 800 !important;
+    font-size: 22px !important;
+    margin: 12px !important;
+}
+.card-list-container{
+    margin-top: 10px;
+    display: flex;
+    height: 200px;
+    border: 1px solid rgb(172, 171, 171);
+    /* border-top: 0px; */
+}
+.image-and-count{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+.description{
+    padding: 10px;
+    width: 75%;
+}
+.action-button-container{
+    display: flex;
+    align-items: center;
+}
+.counter{
+    display: flex;
+    height: 30px;
+    width: 90px;
+    border: 1px solid rgb(161, 159, 159);
+    border-radius: 5px;
+}
+.add-box{
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.remove-box{
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.count-box{
+    width: 30px;
+    border-right:1px solid rgb(161, 159, 159);
+    border-left:1px solid rgb(161, 159, 159);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.summery-card{
+    border: 1px solid rgb(172, 171, 171);
+    margin-left: 20px;
+    
+}
+.summery-header{
+    border-bottom: 1px solid rgb(172, 171, 171);
+    height: 60px;
+    display: flex;
+    padding-left: 10px;
+    align-items: center;
+}
+.summery-content{
+    padding:12px;
+}
+.table-structure{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}

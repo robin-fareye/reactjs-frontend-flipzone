@@ -1708,6 +1708,13 @@
     "react-is" "^16.8.0 || ^17.0.0"
     "react-transition-group" "^4.4.0"
 
+"@material-ui/icons@^4.11.3":
+  version "4.11.3"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.3.tgz#b0693709f9b161ce9ccde276a770d968484ecff1"
+  integrity sha512-IKHlyx6LDh8n19vzwH5RtHIOHl9Tu90aAAxcbWME6kp4dmvODM3UvOHJeMIDzUbd4muuJKHmlNoBN+mDY4XkBA==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+
 "@material-ui/styles@^4.11.5":
   "integrity" "sha512-o/41ot5JJiUsIETME9wVLAJrmIWL3j0R0Bj2kCOLbSfqEkKf0fmaPt+5vtblUh5eXr2S+J/8J3DaCb10+CzPGA=="
   "resolved" "https://registry.npmjs.org/@material-ui/styles/-/styles-4.11.5.tgz"
@@ -1780,10 +1787,7 @@
   dependencies:
     "@babel/runtime" "^7.19.0"
 
-"@mui/material@^5.0.0", "@mui/material@^5.10.13":
-  "integrity" "sha512-TkkT1rNc0/hhL4/+zv4gYcA6egNWBH/1Tz+azoTnQIUdZ32fgwFI2pFX2KVJNTt30xnLznxDWtTv7ilmJQ52xw=="
-  "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.10.13.tgz"
-  "version" "5.10.13"
+
   dependencies:
     "@babel/runtime" "^7.19.0"
     "@mui/base" "5.0.0-alpha.105"
