@@ -1,0 +1,28 @@
+.main-catalouge-container {
+    padding: 10px;
+}
+/* 
+.card-container {
+    height: 12%;
+    width: 10%;
+    border: 1px solid black;
+}
+
+.image-item-catalouge {
+    height: 200px;
+    width: 50%;
+} */
+
+.catagory-container{
+    border: 1px solid rgb(172, 170, 170);
+    height: 170px;
+    width: 100%;
+}
+.container-header{
+    height: 40px;
+    background-color: #0D4C92;
+}
+.sort{
+    display: flex;
+    padding: 15px;
+}

@@ -4,7 +4,7 @@ import './RetailerAddProduct.css'
 
 const RetailerAddProduct = () => {
 
-    const [formData, setFormData] = useState({category:"", name:"", description:"", price:"", quantity:""})
+    const [formData, setFormData] = useState({category:"", name:"", description:"", price:"", quantity:"", photo: ""})
     // const [formDataError, setformDataError] = useState({})
 
     const handleChange = (event) => {
@@ -24,7 +24,14 @@ const RetailerAddProduct = () => {
             <Typography
                 variant='h4'
                 className='container-header'>Add Your Product</Typography>
-
+            <TextField
+                required onChange={(e) => handleChange(e)}
+                value={formData.name}
+                name='name'
+                className='text-field'
+                label="Product Name"
+                variant="outlined"
+            />
             <TextField
                 required onChange={(e) => handleChange(e)}
                 value={formData.category}
@@ -35,10 +42,10 @@ const RetailerAddProduct = () => {
             />
             <TextField
                 required onChange={(e) => handleChange(e)}
-                value={formData.name}
-                name='name'
+                value={formData.photo}
+                name='photo'
                 className='text-field'
-                label="Product Name"
+                label="Product Photo URL"
                 variant="outlined"
             />
             <TextField

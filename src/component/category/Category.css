@@ -1,0 +1,33 @@
+.cat-component {
+    /* background-color: #CFF5E7; */
+    justify-content: 'space-between';
+    margin: '55px 130px 0 130px';
+    overflow-x: 'overlay';
+    display: flex;
+    flex-direction: row;
+    padding:0, 50px;
+    /* [theme.breakpoints.down('md')]: {
+        margin: 0;
+    } */
+}
+
+.cat-container {
+    flex: 1;
+    padding: '12px 8px';
+    text-align: 'center';
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-image {
+    width: 100px;
+    height: 100px;
+}
+
+.cat-text {
+    font-size: 14;
+    font-weight: 600;
+    font-family: 'inherit';
+    text-align: center;
+}

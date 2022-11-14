@@ -1,0 +1,33 @@
+.component{
+    margin-top: 12px;
+    background: #FFFFFF;
+    /* display: flex; */
+}
+.category{
+    /* display: flex; */
+    /* flex-direction: ; */
+    padding: '15px 20px';
+    justify-content: space-evenly;
+}
+.categoryText{
+    font-size: large;
+}
+.wrapper{
+    padding: '25px 15px';
+    flex-direction: column;
+}
+.image{
+    width: auto;
+    height: 150px;
+    margin-left: 20;
+}
+.text{
+    font-size: 14px;
+    margin-top: 5px;
+    color: black;
+}
+.carousel{
+    display: flex;
+    flex-direction: column;
+    
+}
