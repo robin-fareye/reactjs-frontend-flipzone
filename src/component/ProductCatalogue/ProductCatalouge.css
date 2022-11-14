@@ -1,8 +1,8 @@
-.main-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-}
 
+.main-catalouge-container {
+    padding: 10px;
+}
+/* 
 .card-container {
     height: 12%;
     width: 10%;
@@ -12,4 +12,13 @@
 .image-item-catalouge {
     height: 200px;
     width: 50%;
+} */
+
+.catagory-container{
+    border: 1px solid rgb(172, 170, 170);
+    height: 170px;
+    width: 100%;
+}
+.container-header{
+    height: 40px;
 }
