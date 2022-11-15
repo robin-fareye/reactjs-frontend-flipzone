@@ -12,8 +12,8 @@ const getAllProducts = async() => {
         }
 }
 
-const postProduct=async()=>{
-    let res=await axios.post('http://localhost:8085/product')
+const postProduct=async(payload)=>{
+    let res=await axios.post('http://localhost:8085/product',payload)
     if (res?.status === 200) {
         return res
     }

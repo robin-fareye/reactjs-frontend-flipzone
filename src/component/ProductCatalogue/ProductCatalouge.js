@@ -34,7 +34,7 @@ const ProductCatalouge = () => {
                 <img
                     style={{ height: "60px" }}
                     className='image-item-catalouge'
-                    src='https://rukminim1.flixcart.com/image/416/416/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70'
+                    src={item.productImageURL}
                     alt='image'
                 />
                 <Typography>{item.productName}</Typography>
