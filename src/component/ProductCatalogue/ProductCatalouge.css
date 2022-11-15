@@ -1,18 +1,18 @@
+ /* .main-catalouge-container {
+    padding: 10px !important;
+    margin-top: 10px !important;
+} */
 
-.main-catalouge-container {
-    padding: 10px;
-}
-/* 
-.card-container {
-    height: 12%;
-    width: 10%;
-    border: 1px solid black;
+.item-card-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .image-item-catalouge {
     height: 200px;
     width: 50%;
-} */
+}
 
 .catagory-container{
     border: 1px solid rgb(172, 170, 170);
