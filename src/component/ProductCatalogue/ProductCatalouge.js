@@ -1,93 +1,70 @@
-import { Box, Typography, Grid, Button, Divider } from '@mui/material'
-import React, { useState, useEffect } from 'react'
-import './ProductCatalouge.css'
+import { Box, Button, Typography } from '@mui/material'
+import { getAllProducts } from '../../api/ProductApi'
+import React, { useEffect, useState } from 'react'
+import Grid from '@mui/material/Grid'
+import { border } from '@mui/system'
 
 const ProductCatalouge = () => {
 
-    const [sort, setSort] = useState("asc");
+    const [products, setProducts] = useState([])
 
-    const getCardItem=(item)=>{
+    const getProductList = async () => {
+        let res = await getAllProducts()
+        setProducts(res?.data)
+        console.log(res?.data);
+    }
+    useEffect(() => {
+        getProductList()
+    }, [])
+    const handleAddToCart = (index) => {
+
+    }
+    const getCardItem = (item, index) => {
         return (
-        <Box className='card-container'>
-            <img 
-            //style={{height:"60px"}}
-            className='item-image'
-            src='https://rukminim1.flixcart.com/image/416/416/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70'
-            alt='item'
-            />
-            <Typography>{item.name}</Typography>
-            <Typography>Price: {item.price}</Typography>
-            <Typography>{item.description}</Typography>
-        </Box>
+            <Box style=
+                {{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    padding:'16px',
+                    border:'1px solid rgb(233, 236, 242)',
+                    webkitBoxShadow:'0 4px 6px -6px rgb(87, 87, 87)'
+                }} className='item-card-container'>
+                <img
+                    style={{ height: "60px" }}
+                    className='image-item-catalouge'
+                    src='https://rukminim1.flixcart.com/image/416/416/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70'
+                    alt='image'
+                />
+                <Typography>{item.productName}</Typography>
+                <Typography>{item.productPrice}</Typography>
+                <Typography>{item.productDescription}</Typography>
+                <Button style={{marginTop:"13px"}} onClick={handleAddToCart(index)} variant='contained'>Add To Cart</Button>
+            </Box>
         )
     }
-    const catagories=["cat1","cat2","cat3","cat4"]
-    const items=[
-        {
-            name:"SOme item name",
-            price:"$400",
-            description:"something described"
-        },
-        {
-            name:"SOme item name",
-            price:"$500",
-            description:"something described"
-        },
-        {
-            name:"SOme item name",
-            price:"$500",
-            description:"something described"
-        },
-        {
-            name:"SOme item name",
-            price:"$500",
-            description:"something described"
-        },
-        {
-            name:"SOme item name",
-            price:"$500",
-            description:"something described"
-        },
-    ]
-
+    
     return (
-        <Box className='catagory-container'>
-            <Box className='container-header'>
-                <img
-                    src={require('../../assets/logo.png')}
-                    alt="category"
-                    className="cat-image"
-                    />
-                <Typography className="cat-name">Category Name</Typography>
-            </Box>
-            <Box className='container-body'>
-                <Grid item xs={4} sm={4} md={8} lg={12} xl={15}>
-                    <Box className='sort'>
-                        <Typography>Sort by</Typography>
-                        {/* <Button onClick={() => setSort("popular")}>Popularity</Button> */}
-                        <Button onClick={() => setSort("asc")}>Price--low to high</Button>
-                        <Button onClick={() => setSort("desc")}>Price--high to low</Button>
-                    </Box>
-                    <Divider />
-                    <Box className="inner-body">
-                        {
-                            items.sort((a, b) => sort === "asc" ? a.price - b.price : b.price - a.price)
-                            .map((items) => {
-                                return (
-                                    getCardItem(items)
-                                )                            
-                            })
-                        }
-                    </Box>
+        <Box className='main-catalouge-container'>
+
+            <Box className='catagory-container'>
+                <Grid className='item-grid-container' container spacing={{ xs: 5, md: 5 }} columns={{ xs: 4, sm: 20, md: 18, xl: 24 }}>
+                    {products?.map((item, index) => (
+                        <Grid item xs={2} sm={4} md={3} xl={3} key={index}>
+                            {getCardItem(item, index)}
+                        </Grid>
+                    ))}
                 </Grid>
             </Box>
+
         </Box>
     )
 }
 
 export default ProductCatalouge
 
- {/* {
+{/* {
             items?.map((item)=>{
                 return getCardItem(item)
             })

@@ -12,9 +12,10 @@ import RetailerAddProduct from './component/retailer/RetailerAddProduct';
 function App() {
   return (
     <div>
-
-      <ProductCatalouge/>
-
+      <Header />
+      <Category />
+<ProductCatalouge/>
+{/* <Cart/> */}
     </div>
   );
 }

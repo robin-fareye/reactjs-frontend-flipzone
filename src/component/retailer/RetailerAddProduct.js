@@ -16,7 +16,7 @@ const RetailerAddProduct = () => {
     }
 
     const handleAdd = () => {
-
+        console.log("adding product");
     }
 
     return (

@@ -4,7 +4,7 @@ import './Category.css'
 
 
 const Category = () => {
-    const navData = ['a', 'b', 'c', 'd'];
+    const navData = ['abcs', 'bcdf', 'cjfv', 'ddvbj', 'cjfv', 'ddvbj', 'cjfv', 'ddvbj'];
 
     return (
         <Box className="cat-component">
