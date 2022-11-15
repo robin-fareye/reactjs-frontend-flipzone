@@ -17,7 +17,7 @@ const ProductCatalouge = () => {
         getProductList()
     }, [])
     const handleAddToCart = (index) => {
-        
+
     }
     const getCardItem = (item, index) => {
         return (
@@ -30,11 +30,11 @@ const ProductCatalouge = () => {
                     padding:'16px',
                     border:'1px solid rgb(233, 236, 242)',
                     webkitBoxShadow:'0 4px 6px -6px rgb(87, 87, 87)'
-                }} className='item-card-container' onClick={() => window.location.replace(`/product/${item.productID}`)}>
+                }} className='item-card-container'>
                 <img
                     style={{ height: "60px" }}
                     className='image-item-catalouge'
-                    src={item.productImageURL}
+                    src='https://rukminim1.flixcart.com/image/416/416/kcgk1ow0/headphone/n/u/a/235v2-fast-charging-boat-original-imaftk6us4af7bca.jpeg?q=70'
                     alt='image'
                 />
                 <Typography>{item.productName}</Typography>
