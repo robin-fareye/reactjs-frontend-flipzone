@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter, Routes,  Route } from 'react-router-dom';
+// import Switch from 'react-router-dom'
 import './App.css';
 
 import Login from './component/auth/Login';
@@ -15,18 +15,31 @@ import RetailerAddProduct from './component/retailer/RetailerAddProduct';
 
 function App() {
   return (
-    <div className="app">
-      <Router>
+    // <div >
+    //   <Router>
+    //     <Routes>
+    //       <Route exact path="/" element={<ProductCatalouge />}/>
+    //       <Route exact path="/login" element={<Login />}/>
+    //       <Route exact path="/cart" element={<Cart />}/>
+    //       <Route exact path="/productCatalouge" element={<ProductCatalouge />}/>
+    //       <Route exact path="/product/:id" element={<ProductDetails />}/>
+    //       <Route exact path="/checkout" element={<CheckoutPage />}/>
+    //     </Routes>
+    //   </Router>
+    //   <Cart/>
+    // </div>
+    <BrowserRouter>
+      <div className="container">
         <Routes>
-          <Route exact path="/" element={<ProductCatalouge />}/>
-          <Route exact path="/login" element={<Login />}/>
-          <Route exact path="/cart" element={<Cart />}/>
-          <Route exact path="/productCatalouge" element={<ProductCatalouge />}/>
-          <Route exact path="/product/:id" element={<ProductDetails />}/>
-          <Route exact path="/checkout" element={<CheckoutPage />}/>
+          <Route exact path="/" element={<ProductCatalouge />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/productCatalouge" element={<ProductCatalouge />} />
+          <Route exact path="/product/:id" element={<ProductDetails />} />
+          <Route exact path="/checkout" element={<CheckoutPage />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </BrowserRouter>
   )
 }
 
