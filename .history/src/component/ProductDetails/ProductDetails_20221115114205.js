@@ -1,13 +1,14 @@
 import { Box, Button, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
 import "./ProductDetails.css"
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
+//const des="Lorem Ipsome Let music brighten up your mood anytime, anywhere with the boAt#235v2 Fast Charging Bluetooth Headset. This Bluetooth headset features a Call#Vibration Alert, a Fast Charging Technology, and Easy Access Controls to listen to and manage your favorite music with ease."
+//const description=des.split("#")
 
 const ProductDetails = () => {
-    const { id } = useParams();
+    const id = 1;       //should get from route
 
     const [prodDetails, setProdDetails] = useState([])
 
