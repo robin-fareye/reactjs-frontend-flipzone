@@ -1,0 +1,11 @@
+.cart-item-count {
+    justify-content: center;
+    text-align: center;
+    /* width: 15px; */
+    min-width: 15px;
+    height: 25px;
+    background-color: brown;
+    border: 10;
+    border-color: black;
+    border-radius: 10px;
+}
