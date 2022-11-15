@@ -17,7 +17,7 @@ const ProductCatalouge = () => {
         getProductList()
     }, [])
     const handleAddToCart = (index) => {
-        
+
     }
     const getCardItem = (item, index) => {
         return (
@@ -30,7 +30,7 @@ const ProductCatalouge = () => {
                     padding:'16px',
                     border:'1px solid rgb(233, 236, 242)',
                     webkitBoxShadow:'0 4px 6px -6px rgb(87, 87, 87)'
-                }} className='item-card-container' onClick={() => window.location.replace(`/product/${item.productID}`)}>
+                }} className='item-card-container'>
                 <img
                     style={{ height: "60px" }}
                     className='image-item-catalouge'
