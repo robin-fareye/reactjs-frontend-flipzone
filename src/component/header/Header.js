@@ -59,10 +59,13 @@ const Header = () => {
     const [text, setText] = useState("");
     const [open, setOpen] = useState(true);
 
-
     const getText = (text) => {
         setText(text);
         setOpen(false)
+    }
+
+    const getItemCount = () => {
+        return 1;
     }
 
     // useEffect(() => {
@@ -72,7 +75,7 @@ const Header = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <Box  style={{ width: '100%', backgroundColor: '#0D4C92', color: 'aliceblue' }}>
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -109,89 +112,13 @@ const Header = () => {
                     <Typography>
                         Cart
                     </Typography>
+                    {getItemCount() > 0 && <Typography className="cart-item-count">
+                        {getItemCount()}
+                    </Typography>}
                 </Toolbar>
-            </AppBar>
+            </Box>
         </Box>
     );
 }
-
-
-
-// const Header = () => {
-//     const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png';
-//     const subURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png';
-
-//     const [text, setText] = useState();
-//     const [open, setOpen] = useState(true)
-
-//     const getText = (text) => {
-//         setText(text);
-//         setOpen(false)
-//     }
-
-//     const [products, setProducts] = useState([]);
-
-//     const getProducts = () => {
-//         return [];
-//     }
-
-//     useEffect(() => {
-//         getProducts();
-//     }, [text])
-
-
-//     return (
-//         <AppBar position='fixed' className='header-container'>
-//             <Box className='header'>
-//                 <Typography style={{ flex: 1 }}></Typography>
-//                 <Typography className="subHeading">
-//                     Home
-//                 </Typography>
-
-//                 <Box className="search">
-//                     <InputBase
-//                         placeholder="Search for products, brands and more"
-//                         className='inputRoot inputInput'
-//                         inputProps={{ 'aria-label': 'search' }}
-//                         onChange={(e) => getText(e.target.value)}
-//                     />
-//                     <Box className="searchIcon">
-//                         <Button>
-//                             <img alt="SearchIcon" src={require('../../assets/searchIcon.png')} />
-//                         </Button>
-//                     </Box>
-//                     {
-//                         text &&
-//                         <List className="listSearch" hidden={open}>
-//                             {
-//                                 products.filter(product => product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product => (
-//                                     <ListItem>
-//                                         {product.title.longTitle}
-//                                     </ListItem>
-//                                 ))
-//                             }
-//                         </List>
-//                     }
-//                 </Box>
-
-//                 <Typography style={{ flex: 1, textAlign: 'center' }}>
-//                     More
-//                 </Typography>
-
-//                 <Box className='cart'>
-//                     <Badge color="secondary">
-//                         <ShoppingCart />
-//                     </Badge>
-//                     <Typography>
-//                         Cart
-//                     </Typography>
-//                 </Box>
-
-//             </Box>
-//         </AppBar>
-//     )
-// }
-
-
 
 export default Header;
