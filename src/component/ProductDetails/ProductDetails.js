@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import "./ProductDetails.css"
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { getProductById } from '../../api/ProductApi';
+import { addItemToCart } from '../../api/CartApi';
 
 
 const ProductDetails = () => {
@@ -14,6 +16,7 @@ const ProductDetails = () => {
     const getProduct = async () => {
         let res = await getProductById(id);
         setProdDetails(res?.data);
+        console.log("prod: ",res?.data)
         console.log(res?.data);
     }
 
@@ -21,7 +24,23 @@ const ProductDetails = () => {
         getProduct()
     }, [])
 
-    const description = prodDetails?.productDescription.split("#")
+    const addItem=async(payload)=>{
+        const res=await addItemToCart(payload)
+        console.log(res);
+    }
+    const handleAddToCart=()=>{
+
+        const payload={
+            userId:2,
+            productId:prodDetails.productId,
+            cartItemQuantity:1,
+            cartItemPrice:prodDetails.productPrice
+        }
+
+        addItem(payload)
+    }
+
+    const description = prodDetails?.productDescription?.split("#")
 
   return (
     <Box className='main-container'>
@@ -32,7 +51,7 @@ const ProductDetails = () => {
             alt='prod-image'
             />
             <Box className='action-button-container'>
-            <Button className='action-button cart-button' variant="contained">Add To Cart</Button>
+            <Button onClick={handleAddToCart} className='action-button cart-button' variant="contained">Add To Cart</Button>
             <Button className='action-button buy-now-button' variant="contained">Buy Now</Button>
             </Box>
         </Box>

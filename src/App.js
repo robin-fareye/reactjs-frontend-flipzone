@@ -18,10 +18,10 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />}/>
+          <Route exact path="/" element={<ProductCatalouge />}/>
           <Route exact path="/login" element={<Login />}/>
           <Route exact path="/cart" element={<Cart />}/>
-          <Route exact path="/productCatalouge" element={<ProductCatalogue />}/>
+          <Route exact path="/productCatalouge" element={<ProductCatalouge />}/>
           <Route exact path="/product/:id" element={<ProductDetails />}/>
           <Route exact path="/checkout" element={<CheckoutPage />}/>
         </Routes>

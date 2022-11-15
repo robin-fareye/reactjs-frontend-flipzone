@@ -3,6 +3,8 @@ import { getAllProducts } from '../../api/ProductApi'
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
 import { border } from '@mui/system'
+import Header from '../header/Header'
+import Category from '../category/Category'
 
 const ProductCatalouge = () => {
 
@@ -30,7 +32,7 @@ const ProductCatalouge = () => {
                     padding:'16px',
                     border:'1px solid rgb(233, 236, 242)',
                     webkitBoxShadow:'0 4px 6px -6px rgb(87, 87, 87)'
-                }} className='item-card-container' onClick={() => window.location.replace(`/product/${item.productID}`)}>
+                }} className='item-card-container' onClick={() => window.location.replace(`/product/${item?.productId}`)}>
                 <img
                     style={{ height: "60px" }}
                     className='image-item-catalouge'
@@ -46,6 +48,9 @@ const ProductCatalouge = () => {
     }
     
     return (
+        <>
+        <Header/>
+        <Category/>
         <Box className='main-catalouge-container'>
 
             <Box className='catagory-container'>
@@ -59,6 +64,7 @@ const ProductCatalouge = () => {
             </Box>
 
         </Box>
+        </>
     )
 }
 
