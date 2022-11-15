@@ -1,18 +1,31 @@
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
+import { getAllCategories } from '../../api/CateogryApi';
 import './Category.css'
 
 
 const Category = () => {
-    const navData = ['abcs', 'bcdf', 'cjfv', 'ddvbj', 'cjfv', 'ddvbj', 'cjfv', 'ddvbj'];
+
+    const [navData,setNavData]=useState([])
+    const getNavData=async()=>{
+        let res=await getAllCategories()
+        setNavData(res?.data)
+        console.log("dsjkfs: ",res?.data)
+    }
+    useEffect(()=>{
+        getNavData()
+    },[])
+   
 
     return (
         <Box className="cat-component">
             {
                 navData.map((item, index) => (
                     <Box className="cat-container" key={index}>
-                        <img className="cat-image" alt="Category" src={require('../../assets/logo.png')} />
-                        <Typography className="cat-text">{item}</Typography>
+                        <img className="cat-image" alt="Category" src={item?.productCategoryImageURL} />
+                        <Typography className="cat-text">{item?.productCategoryName}</Typography>
                     </Box>
                 ))
             }

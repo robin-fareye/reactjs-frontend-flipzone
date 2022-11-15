@@ -13,7 +13,7 @@ function App() {
     <div>
       <Header />
       <Category />
-<RetailerAddProduct/>
+<ProductCatalouge/>
 {/* <Cart/> */}
     </div>
   );

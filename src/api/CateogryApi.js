@@ -1,3 +1,4 @@
+import axios from "axios"
 const getAllCategories=async()=>{
     let res=await axios.get(`http://localhost:8085/category`)
     if (res?.status === 200) {
