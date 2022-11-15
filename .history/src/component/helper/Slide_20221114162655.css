@@ -1,0 +1,24 @@
+.component{
+    margin-top: 12px;
+    background: #FFFFFF;
+}
+.category{
+    display: flex;
+    flex-direction: row;
+    padding: '15px 20px';
+}
+.categoryText{
+
+}
+.wrapper{
+    padding: '25px 15px';
+}
+.image{
+    width: auto;
+    height: 150px;
+}
+.text{
+    font-size: 14px;
+    margin-top: 5px;
+    color: black;
+}
