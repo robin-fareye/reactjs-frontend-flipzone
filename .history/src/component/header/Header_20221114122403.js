@@ -106,7 +106,7 @@ const Header = () => {
                     <Badge color="secondary">
                         <ShoppingCart />
                     </Badge>
-                    <Typography onClick={() => window.location.replace("/cart")}>
+                    <Typography>
                         Cart
                     </Typography>
                 </Toolbar>
