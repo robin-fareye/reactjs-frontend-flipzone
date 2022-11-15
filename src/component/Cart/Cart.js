@@ -60,6 +60,11 @@ const Cart = () => {
             return arr
         })
     }
+
+    const handlePlaceOrder = () => {
+        window.location.replace("/checkout")
+    }
+
     const renderCardItem = (item, index) => {
         return (
             <Box className="card-list-container">
@@ -125,7 +130,7 @@ const Cart = () => {
                             <Typography variant='h6'>{(getTotalAmount() + 40)}</Typography>
                         </Box>
 
-                        <Button style={{ width: "100%", marginTop: "30px" }} variant='contained'>Place Order</Button>
+                        <Button style={{ width: "100%", marginTop: "30px" }} variant='contained' onClick={handlePlaceOrder}>Place Order</Button>
                     </Box>
                 </Box>
             </Box>

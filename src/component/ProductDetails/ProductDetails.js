@@ -40,6 +40,10 @@ const ProductDetails = () => {
         addItem(payload)
     }
 
+    const handleBuyNow =()=> {
+        window.location.replace("/checkout")
+    }
+
     const description = prodDetails?.productDescription?.split("#")
 
   return (
@@ -52,7 +56,7 @@ const ProductDetails = () => {
             />
             <Box className='action-button-container'>
             <Button onClick={handleAddToCart} className='action-button cart-button' variant="contained">Add To Cart</Button>
-            <Button className='action-button buy-now-button' variant="contained">Buy Now</Button>
+            <Button className='action-button buy-now-button' variant="contained" onClick={handleBuyNow}>Buy Now</Button>
             </Box>
         </Box>
         <Box className='details-container'>
