@@ -84,13 +84,14 @@ const Header = () => {
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
                     >
-                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} />
+                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => window.location.replace("/")}/>
                     </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        onClick={() => window.location.replace("/")}
                     >
                         FlipZone
                     </Typography>

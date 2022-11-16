@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Cart.css'
 import { useState } from 'react';
-
+import Header from '../header/Header'
 import { Box, Button, Typography } from '@mui/material'
 import { getCartItems } from '../../api/CartApi';
 
@@ -100,6 +100,8 @@ const Cart = () => {
         )
     }
     return (
+        <>
+        <Header />
         <Box className='main-container'>
             <Box className='item-list'>
                 <Box className='order-list-header'>
@@ -135,6 +137,7 @@ const Cart = () => {
                 </Box>
             </Box>
         </Box>
+        </>
     )
 }
 

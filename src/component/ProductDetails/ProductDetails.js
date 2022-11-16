@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import "./ProductDetails.css"
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import Header from '../header/Header'
 import { getProductById } from '../../api/ProductApi';
 import { addItemToCart } from '../../api/CartApi';
 
@@ -47,6 +48,8 @@ const ProductDetails = () => {
     const description = prodDetails?.productDescription?.split("#")
 
   return (
+    <>
+    <Header />
     <Box className='main-container'>
         <Box className='image-container'>
             <img 
@@ -93,6 +96,7 @@ const ProductDetails = () => {
             </Box>
         </Box>
     </Box>
+    </>
   )
 }
 
