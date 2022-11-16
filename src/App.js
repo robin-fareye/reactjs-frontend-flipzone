@@ -11,6 +11,7 @@ import ProductCatalouge from './component/ProductCatalogue/ProductCatalouge';
 import ProductDetails from './component/ProductDetails/ProductDetails';
 import CheckoutPage from './component/Checkout/CheckoutPage';
 import RetailerAddProduct from './component/retailer/RetailerAddProduct';
+import RetailerProductListing from './component/retailer/RetailerProductListing';
 
 
 function App() {
@@ -36,7 +37,10 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/productCatalouge" element={<ProductCatalouge />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
+          <Route exact path="/checkout" element={<CheckoutPage />}/>
+          <Route exact path="/retailer" element={<RetailerProductListing />}/>
+          <Route exact path="/addProduct" element={<RetailerAddProduct />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

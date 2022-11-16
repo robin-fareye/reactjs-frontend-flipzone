@@ -16,6 +16,9 @@ const Cart = () => {
         console.log(res?.data);
         setItems(res?.data)
     }
+    const removeItem=async()=>{
+        
+    }
 
     useEffect(() => {
         getItems()
@@ -52,13 +55,19 @@ const Cart = () => {
     }
 
     const handleRemove = (index) => {
-        setItems((prevState) => {
-            const item = prevState[index]
-            let arr = [...prevState]
-            arr.splice(index, 1)
-            console.log(arr);
-            return arr
-        })
+        // setItems((prevState) => {
+        //     const item = prevState[index]
+        //     let arr = [...prevState]
+        //     arr.splice(index, 1)
+        //     console.log(arr);
+        //     return arr
+        // })
+
+        let product=items[index]
+        let cartItemId=product?.cartItemId
+
+
+
     }
 
     const handlePlaceOrder = () => {

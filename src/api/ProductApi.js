@@ -14,14 +14,9 @@ const getAllProducts = async() => {
 
 const postProduct=async(payload)=>{
     let res=await axios.post('http://localhost:8085/product',payload)
-    if (res?.status === 200) {
-        return res
-    }
-    else {
-        console.warn("something went wrong while posting products")
-        return "something went wrong while posting products"
+   
         
-    }
+    return res
 }
 
 const getProductById=async(id)=>{
