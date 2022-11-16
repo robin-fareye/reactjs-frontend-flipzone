@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'
 import Header from '../header/Header'
 import { Box, Button, Typography } from '@mui/material'
-import { getCartItems, increaseCartItem , decreaseCartItem} from '../../api/CartApi';
+import { getCartItems, increaseCartItem , decreaseCartItem, deleteCartItem} from '../../api/CartApi';
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -74,6 +74,10 @@ const Cart = () => {
         return sum
     }
 
+    const deleteProduct=async(cartItemId)=>{
+        await deleteCartItem(cartItemId)
+        getItems(location?.state?.currentUserId)
+    }
     const handleRemove = (index) => {
         // setItems((prevState) => {
         //     const item = prevState[index]
@@ -85,6 +89,7 @@ const Cart = () => {
 
         let product=items[index]
         let cartItemId=product?.cartItemId
+        deleteProduct(cartItemId)
 
 
 
@@ -112,7 +117,7 @@ const Cart = () => {
                     <Box className="action-button-container">
                         <Box className='counter'>
                             <Box className='remove-box'>
-                                <Button disabled={item?.cartItemQuantity === 0} onClick={() => handleReduce(index)} style={{ maxWidth: "30px" }} variant='text'>-</Button>
+                                <Button onClick={item?.cartItemQuantity===1?() => handleRemove(index):() => handleReduce(index)} style={{ maxWidth: "30px" }} variant='text'>-</Button>
                             </Box>
                             <Box className='count-box'>
                                 <Typography>{item?.cartItemQuantity}</Typography>
