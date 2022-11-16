@@ -36,7 +36,6 @@ const RetailerAddProduct = () => {
     const getCategoryData = async () => {
         const result = await getAllCategories()
         setCategoryData(result?.data)
-        console.log(result?.data);
     }
     useEffect(() => {
         getCategoryData()
@@ -51,7 +50,6 @@ const RetailerAddProduct = () => {
                     response.items.forEach((item) => {
                         if (item?._location?.path_ === `images/${imageName}`) {
                             getDownloadURL(item).then((url) => {
-                                console.log(url);
                                 setFormData((prevState) => {
                                     return { ...prevState, imageUrl: url }
                                 })
@@ -66,7 +64,6 @@ const RetailerAddProduct = () => {
 
     const uploadProduct=async(payload)=>{
         let res=await postProduct(payload)
-        console.log(res)
     }
     const handleAdd = () => {
         let id

@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import "./ProductDetails.css"
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -9,16 +9,17 @@ import { getProductById } from '../../api/ProductApi';
 import { addItemToCart } from '../../api/CartApi';
 
 
-const ProductDetails = () => {
-    const { id } = useParams();
-
+const ProductDetails = ({productId, currentUserId}) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    //const { productId } = useParams();
+    //const [productId, setProductId] = useState(location?.state?.productId)
+    //const [currentUserId, setCurrentUserId] = useState(location?.state?.currentUserId)
     const [prodDetails, setProdDetails] = useState([])
 
     const getProduct = async () => {
-        let res = await getProductById(id);
+        let res = await getProductById(productId);
         setProdDetails(res?.data);
-        console.log("prod: ",res?.data)
-        console.log(res?.data);
     }
 
     useEffect(() => {
@@ -27,12 +28,11 @@ const ProductDetails = () => {
 
     const addItem=async(payload)=>{
         const res=await addItemToCart(payload)
-        console.log(res);
     }
     const handleAddToCart=()=>{
 
         const payload={
-            userId:2,
+            userId:currentUserId,
             productId:prodDetails.productId,
             cartItemQuantity:1,
             cartItemPrice:prodDetails.productPrice
@@ -42,14 +42,14 @@ const ProductDetails = () => {
     }
 
     const handleBuyNow =()=> {
-        window.location.replace("/checkout")
+        
+        navigate("/checkout", {state: {}})
     }
 
     const description = prodDetails?.productDescription?.split("#")
 
   return (
     <>
-    <Header />
     <Box className='main-container'>
         <Box className='image-container'>
             <img 

@@ -12,7 +12,7 @@ const addItemToCart=async(payload)=>{
     }
 }
 const getCartItems=async(id)=>{
-    let res=await axios.get(`http://localhost:8085/cartItem/u/2`)
+    let res=await axios.get(`/cartItem/u/${id}`)
     if (res?.status === 200) {
         return res
     }

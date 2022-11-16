@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Header.css'
 import { ShoppingCart } from '@mui/icons-material'
-
+import { useNavigate, useLocation } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles';
 import { Badge, List, ListItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { getCartItems } from '../../api/CartApi';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,22 +56,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const Header = () => {
+const Header = ({userId, cartItemCount}) => {
+    const navigate= useNavigate();
+    const location = useLocation();
     const [text, setText] = useState("");
     const [open, setOpen] = useState(true);
+    //const [cartItemCount, setCartItemCount] = useState("")
 
+    const [currentUserId,setCurrentUserId]=useState(userId)
     const getText = (text) => {
         setText(text);
         setOpen(false)
     }
-
-    const getItemCount = () => {
-        return 1;
-    }
-
-    // useEffect(() => {
-    //     getProducts();
-    // }, [text])
 
 
     return (
@@ -84,14 +81,14 @@ const Header = () => {
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
                     >
-                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => window.location.replace("/")}/>
+                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => navigate("/", {state: {currentUserId: currentUserId}})}/>
                     </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                        onClick={() => window.location.replace("/")}
+                        onClick={() => navigate("/")}
                     >
                         FlipZone
                     </Typography>
@@ -110,11 +107,11 @@ const Header = () => {
                     <Badge color="secondary">
                         <ShoppingCart />
                     </Badge>
-                    <Typography onClick={() => window.location.replace("/cart")}>
+                    <Typography onClick={() => navigate("/cart", {state :{currentUserId:currentUserId}})}>
                         Cart
                     </Typography>
-                    {getItemCount() > 0 && <Typography className="cart-item-count">
-                        {getItemCount()}
+                    {<Typography className="cart-item-count">
+                        { cartItemCount }
                     </Typography>}
                 </Toolbar>
             </Box>

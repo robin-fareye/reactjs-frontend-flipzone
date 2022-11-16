@@ -11,7 +11,6 @@ const ProductCatalouge = () => {
     const getProductList = async () => {
         let res = await getAllProducts()
         setProducts(res?.data)
-        console.log(res?.data);
     }
     useEffect(() => {
         getProductList()

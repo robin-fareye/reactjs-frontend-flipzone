@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react'
 import './Cart.css'
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'
 import Header from '../header/Header'
 import { Box, Button, Typography } from '@mui/material'
 import { getCartItems, increaseCartItem , decreaseCartItem} from '../../api/CartApi';
 
 const Cart = () => {
-
-    const [itemCount, setItemCount] = useState(1);
+    const navigate = useNavigate();
+    const location = useLocation();
+    // const [itemCount, setItemCount] = useState(1);
     const [items, setItems] = useState([])
 
-    const getItems = async () => {
-        const res = await getCartItems()
+    let id=null
+    useEffect(()=>{
+        id=location?.state?.currentUserId
+    },[])
+
+    const getItems = async (id) => {
+        const res = await getCartItems(id)
         setItems(res?.data)
     }
     const increaseItem=async(id,index)=>{
@@ -36,7 +43,7 @@ const Cart = () => {
      }
 
     useEffect(() => {
-        getItems()
+        getItems(location?.state?.currentUserId)
     },[])
     const handleIncrease = (index) => {
        
@@ -84,7 +91,7 @@ const Cart = () => {
     }
 
     const handlePlaceOrder = () => {
-        window.location.replace("/checkout")
+        navigate("/checkout", {state: {currentUserId:location?.state?.currentUserId}})
     }
 
     const renderCardItem = (item, index) => {
@@ -123,7 +130,7 @@ const Cart = () => {
     }
     return (
         <>
-        <Header />
+        {/* <Header userId={location?.state?.currentUserId}/> */}
         <Box className='main-container'>
             <Box className='item-list'>
                 <Box className='order-list-header'>

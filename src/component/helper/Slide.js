@@ -5,7 +5,6 @@ import './Slide.css';
 
 
 const CarouselCardItem = (item) => {
-    console.log(',,,,,,,,,,,,,,,')
     return (
         <Box textAlign="center" className="wrapper">
             <img src={item.image} className="image" alt="" />

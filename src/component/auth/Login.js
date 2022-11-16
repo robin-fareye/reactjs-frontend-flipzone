@@ -6,11 +6,13 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import {  useNavigate} from 'react-router';
 import FormLabel from '@mui/material/FormLabel';
 import { signUpUser, signInUser } from "../../api/Login"
 import axios from "axios"
 const Login = () => {
 
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(false)
     const [formData, setFormData] = useState({ userName: "", email: "", password: "", confirmPassword: "", userType: "ROLE_USER" })
     const [formDataError, setFormDataError] = useState({})
@@ -37,7 +39,7 @@ const Login = () => {
         }
     }
 
-    const handleSignUp = () => {
+    const handleSignUp = async() => {
 
         if (validateFormData()) {
             const payLoad = {
@@ -47,7 +49,10 @@ const Login = () => {
                 role: formData.userType
             }
 
-            signUpUser(payLoad)
+            let res=await signUpUser(payLoad)
+            if(res?.data?.userId!==null){
+                navigate('/',{state: {currentUserId:res?.data?.userId}})
+            }
 
 
         }

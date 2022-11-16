@@ -12,6 +12,8 @@ import ProductDetails from './component/ProductDetails/ProductDetails';
 import CheckoutPage from './component/Checkout/CheckoutPage';
 import RetailerAddProduct from './component/retailer/RetailerAddProduct';
 import RetailerProductListing from './component/retailer/RetailerProductListing';
+import HomePage from './component/HomePage/HomePage';
+import ProductPage from './component/ProductPage/ProductPage';
 
 
 function App() {
@@ -32,11 +34,10 @@ function App() {
     <BrowserRouter>
       <div className="container">
         <Routes>
-          <Route exact path="/" element={<ProductCatalouge />} />
+          <Route exact path="/" element={<HomePage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/productCatalouge" element={<ProductCatalouge />} />
-          <Route exact path="/product/:id" element={<ProductDetails />} />
+          <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/checkout" element={<CheckoutPage />}/>
           <Route exact path="/retailer" element={<RetailerProductListing />}/>
           <Route exact path="/addProduct" element={<RetailerAddProduct />}

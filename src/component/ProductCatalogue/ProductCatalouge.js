@@ -1,25 +1,45 @@
 import { Box, Button, Typography } from '@mui/material'
 import { getAllProducts } from '../../api/ProductApi'
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Grid from '@mui/material/Grid'
 import { border } from '@mui/system'
 import Header from '../header/Header'
 import Category from '../category/Category'
+import { addItemToCart } from '../../api/CartApi';
 
-const ProductCatalouge = () => {
+const ProductCatalouge = ({setCartItemCount}) => {
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [currentUserId, setCurrentUserId] = useState(location?.state?.currentUserId);
     const [products, setProducts] = useState([])
 
     const getProductList = async () => {
         let res = await getAllProducts()
         setProducts(res?.data)
-        console.log(res?.data);
     }
     useEffect(() => {
         getProductList()
     }, [])
-    const handleAddToCart = (index) => {
-        
+    
+    const handleAddToCart = (item) => {
+        const payload={
+            userId:currentUserId,
+            productId:item.productId,
+            cartItemQuantity:1,
+            cartItemPrice:item.productPrice
+        }
+
+        console.log("payload",payload);
+
+        addItem(payload)
+        setCartItemCount((prevCount)=>{
+            return prevCount+1
+        })
+    }
+    const addItem=async(payload)=>{
+        const res=await addItemToCart(payload)
     }
     const getCardItem = (item, index) => {
         return (
@@ -32,25 +52,24 @@ const ProductCatalouge = () => {
                     padding:'16px',
                     border:'1px solid rgb(233, 236, 242)',
                     webkitBoxShadow:'0 4px 6px -6px rgb(87, 87, 87)'
-                }} className='item-card-container' onClick={() => window.location.replace(`/product/${item?.productId}`)}>
+                }} className='item-card-container'>
                 <img
                     style={{ height: "60px" }}
                     className='image-item-catalouge'
                     src={item.productImageURL}
                     alt='image'
+                    onClick={() => navigate(`/product/${item?.productId}`, {state: {currentUserId:currentUserId, productId: item?.productId}})}
                 />
                 <Typography>{item.productName}</Typography>
                 <Typography>{item.productPrice}</Typography>
                 <Typography>{item.productDescription}</Typography>
-                <Button style={{marginTop:"13px"}} onClick={handleAddToCart(index)} variant='contained'>Add To Cart</Button>
+                <Button style={{marginTop:"13px"}} onClick={()=>handleAddToCart(item)} variant='contained'>Add To Cart</Button>
             </Box>
         )
     }
     
     return (
         <>
-        <Header/>
-        <Category/>
         <Box className='main-catalouge-container'>
 
             <Box className='catagory-container'>
