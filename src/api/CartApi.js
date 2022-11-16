@@ -25,7 +25,7 @@ const getCartItems=async(id)=>{
 
 
 const decreaseCartItem=async(id)=>{
-    let res=await axios.put(`http://localhost:8085/cartItem/decrease/2`)
+    let res=await axios.put(`/cartItem/decrease/${id}`)
     if (res?.status === 200) {
         return res
     }
@@ -36,5 +36,16 @@ const decreaseCartItem=async(id)=>{
     }
 }
 
+const increaseCartItem=async(id)=>{
+    let res=await axios.put(`/cartItem/increase/${id}`)
+    if (res?.status === 200) {
+        return res
+    }
+    else {
+        console.warn("something went wrong while posting products")
+        return "something went wrong while posting products"
+        
+    }
+}
 
-export {addItemToCart,getCartItems,decreaseCartItem}
+export {addItemToCart,getCartItems,decreaseCartItem,increaseCartItem}

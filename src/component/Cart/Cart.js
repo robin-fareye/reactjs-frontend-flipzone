@@ -3,53 +3,66 @@ import './Cart.css'
 import { useState } from 'react';
 import Header from '../header/Header'
 import { Box, Button, Typography } from '@mui/material'
-import { getCartItems } from '../../api/CartApi';
+import { getCartItems, increaseCartItem , decreaseCartItem} from '../../api/CartApi';
 
 const Cart = () => {
 
     const [itemCount, setItemCount] = useState(1);
     const [items, setItems] = useState([])
 
-
     const getItems = async () => {
         const res = await getCartItems()
-        console.log(res?.data);
         setItems(res?.data)
     }
-    const removeItem=async()=>{
-        
+    const increaseItem=async(id,index)=>{
+       let res= await increaseCartItem(id)
+       //getItems()
+       setItems((prevState) => {
+            const item = prevState[index]
+            let arr = [...prevState]
+            arr[index].cartItemQuantity = item?.cartItemQuantity + 1
+            return arr
+        })
     }
+    const decreaseItem=async(id,index)=>{
+        let res= await decreaseCartItem(id)
+        //getItems()
+         setItems((prevState) => {
+            const item = prevState[index]
+            let arr = [...prevState]
+            arr[index].cartItemQuantity = item.cartItemQuantity - 1
+            return arr
+        })
+     }
 
     useEffect(() => {
         getItems()
     },[])
     const handleIncrease = (index) => {
-        setItems((prevState) => {
-            const item = prevState[index]
-            let arr = [...prevState]
-            arr[index].quantity = arr[index].quantity + 1
-            return arr
-        })
+       
+        
+        let id=items[index]?.cartItemId
+        increaseItem(id,index)
+        
     }
     const handleReduce = (index) => {
-        setItems((prevState) => {
-            const item = prevState[index]
-            let arr = [...prevState]
-            arr[index].quantity = arr[index].quantity - 1
-            return arr
-        })
+       
+        let id=items[index]?.cartItemId
+        decreaseItem(id,index)
+        
+       
     }
     const getTotalAmount = () => {
         let sum = 0
         items?.forEach(element => {
-            sum = sum + (element?.price * element?.quantity)
+            sum = sum + (element?.cartItemPrice * element?.cartItemQuantity)
         });
         return sum
     }
     const getTotalQuantity = () => {
         let sum = 0
         items?.forEach(element => {
-            sum = sum + element?.quantity
+            sum = sum + element?.cartItemQuantity
         });
         return sum
     }
