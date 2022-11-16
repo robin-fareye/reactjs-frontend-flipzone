@@ -156,7 +156,7 @@ const Login = () => {
 
     }
     return (
-        <Box className="main-container">
+        <Box  className="main-login-container">
             <Box className="left-section" >
                 <Typography
                     variant='h3'

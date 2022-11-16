@@ -10,6 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
+import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { getCartItems } from '../../api/CartApi';
 
@@ -56,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const Header = ({userId, cartItemCount}) => {
+const Header = ({userId, cartItemCount, setSearchText}) => {
     const navigate= useNavigate();
     const location = useLocation();
     const [text, setText] = useState("");
@@ -66,10 +67,11 @@ const Header = ({userId, cartItemCount}) => {
     const [currentUserId,setCurrentUserId]=useState(userId)
     const getText = (text) => {
         setText(text);
-        setOpen(false)
+        setOpen(false);
+        setSearchText(text);
     }
 
-
+    console.log("cartitemcount:",currentUserId);
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Box  style={{ width: '100%', backgroundColor: '#0D4C92', color: 'aliceblue' }}>
@@ -81,7 +83,9 @@ const Header = ({userId, cartItemCount}) => {
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
                     >
-                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => navigate("/", {state: {currentUserId: currentUserId}})}/>
+                        <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => {
+                        
+                            navigate("/", {state: {currentUserId: currentUserId}})}}/>
                     </IconButton>
                     <Typography
                         variant="h6"
@@ -104,17 +108,28 @@ const Header = ({userId, cartItemCount}) => {
 
                     </Search>
 
+                    <Box display='flex' onClick={() => navigate("/cart", {state :{currentUserId:currentUserId}})}>
                     <Badge color="secondary">
                         <ShoppingCart />
                     </Badge>
-                    <Typography onClick={() => navigate("/cart", {state :{currentUserId:currentUserId}})}>
+                    <Typography >
                         Cart
                     </Typography>
                     {<Typography className="cart-item-count">
                         { cartItemCount }
                     </Typography>}
+                    </Box>
+                    <Button
+                        color="inherit"
+                        sx={{ ml: 5, fontSize: 15 }}
+                        onClick={() => navigate("/")}
+                    >
+                        Log out
+                    </Button>
                 </Toolbar>
+                
             </Box>
+            
         </Box>
     );
 }

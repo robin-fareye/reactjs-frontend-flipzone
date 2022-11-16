@@ -1,7 +1,7 @@
- /* .main-catalouge-container {
+ .catalouge-container {
     padding: 10px !important;
     margin-top: 10px !important;
-} */
+}
 
 .item-card-container {
    display: flex;
@@ -14,11 +14,11 @@
     width: 50%;
 }
 
-.catagory-container{
+.catagory-container-box{
     border: 1px solid rgb(172, 170, 170);
     /* height: 170px; */
     /* width: 100%; */
-    padding-bottom: 5%;
+    padding: 10px !important;
 }
 .container-header{
     background-color: #0D4C92;

@@ -8,20 +8,16 @@ import Header from '../header/Header'
 import Category from '../category/Category'
 import { addItemToCart } from '../../api/CartApi';
 
-const ProductCatalouge = ({setCartItemCount}) => {
+const ProductCatalouge = ({setCartItemCount, dataList}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
     const [currentUserId, setCurrentUserId] = useState(location?.state?.currentUserId);
     const [products, setProducts] = useState([])
 
-    const getProductList = async () => {
-        let res = await getAllProducts()
-        setProducts(res?.data)
-    }
-    useEffect(() => {
-        getProductList()
-    }, [])
+    useEffect(()=>{
+        setProducts(dataList)
+    },[dataList])
     
     const handleAddToCart = (item) => {
         const payload={
@@ -70,9 +66,9 @@ const ProductCatalouge = ({setCartItemCount}) => {
     
     return (
         <>
-        <Box className='main-catalouge-container'>
+        <Box className='catalouge-container'>
 
-            <Box className='catagory-container'>
+            <Box className='catagory-container-box' style={{padding:"10px 30px"}}>
                 <Grid className='item-grid-container' container spacing={{ xs: 5, md: 5 }} columns={{ xs: 4, sm: 20, md: 18, xl: 24 }}>
                     {products?.map((item, index) => (
                         <Grid item xs={2} sm={4} md={3} xl={3} key={index}>

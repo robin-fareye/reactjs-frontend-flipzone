@@ -2,8 +2,9 @@
     justify-content: center;
     text-align: center;
     /* width: 15px; */
-    min-width: 15px;
+    min-width: 25px;
     height: 25px;
+    margin-left: 5px !important;
     background-color: brown;
     border: 10;
     border-color: black;

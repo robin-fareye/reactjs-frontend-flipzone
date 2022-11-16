@@ -1,12 +1,12 @@
-body{
-    padding: 10px 70px;
-}
-.main-container{
+
+.main-cart-container{
     display: flex;
     height: 100vh;
+    margin: 32px;
 }
 .item-list{
     width: 65%;
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
 }
 .order-details{
     width: 35%;
@@ -14,18 +14,20 @@ body{
 .order-list-header{
     height: 60px;
     border: 1px solid rgb(172, 171, 171);
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
    
 }
 .item-count{
     font-weight: 800 !important;
     font-size: 22px !important;
-    margin: 12px !important;
+    margin: 14px !important;
 }
 .card-list-container{
     margin-top: 10px;
     display: flex;
     height: 200px;
     border: 1px solid rgb(172, 171, 171);
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
     /* border-top: 0px; */
 }
 .image-and-count{
@@ -70,6 +72,7 @@ body{
 }
 .summery-card{
     border: 1px solid rgb(172, 171, 171);
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
     margin-left: 20px;
     
 }

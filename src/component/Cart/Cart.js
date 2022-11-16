@@ -104,7 +104,7 @@ const Cart = () => {
             <Box className="card-list-container">
                 <Box className='image-and-count'>
                     <img
-                        style={{maxWidth:"280px"}}
+                        style={{maxWidth:"100%",minWidth:"100%"}}
                         // className='image-item-catalouge'
                         src={item?.product?.productImageURL}
                         alt='image'
@@ -136,7 +136,7 @@ const Cart = () => {
     return (
         <>
         {/* <Header userId={location?.state?.currentUserId}/> */}
-        <Box className='main-container'>
+        <Box className='main-cart-container'>
             <Box className='item-list'>
                 <Box className='order-list-header'>
                     <Typography className='item-count'>{`My Cart(${items?.length})`}</Typography>

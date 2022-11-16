@@ -7,7 +7,7 @@ import { getAllCategories } from '../../api/CateogryApi';
 import './Category.css'
 
 
-const Category = () => {
+const Category = ({setSelectedCategory}) => {
     const navigate = useNavigate();
     const [navData,setNavData]=useState([])
     const getNavData=async()=>{
@@ -23,7 +23,7 @@ const Category = () => {
         <Box className="cat-component">
             {
                 navData.map((item, index) => (
-                    <Box className="cat-container" key={index} onClick = {() => navigate("/", {state: {categoryId: item.productCategoryId}})}>
+                    <Box className="cat-container" key={index} onClick = {() => setSelectedCategory(item.productCategoryId)}>
                         <img className="cat-image" alt="Category" src={item?.productCategoryImageURL} />
                         <Typography className="cat-text">{item?.productCategoryName}</Typography>
                     </Box>

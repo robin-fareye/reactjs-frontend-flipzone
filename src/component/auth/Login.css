@@ -1,7 +1,7 @@
 .body{
     padding: 0px;
 }
-.main-container{
+.main-login-container{
     display: flex;
     height: 100vh;
     padding: 0px !important;
