@@ -1,10 +1,7 @@
-body{
-    padding: 10px 70px;
-}
-.main-container{
-    display: flex;
+
+.listing-container{
     height: 100vh;
-    width: "100%";
+    width: 60%;
 }
 .item-list{
     width: 65%;
@@ -15,6 +12,8 @@ body{
 .order-list-header{
     height: 60px;
     border: 1px solid rgb(172, 171, 171);
+    display: flex;
+    justify-content: space-between;
 
 }
 .item-count{
@@ -90,9 +89,9 @@ body{
     justify-content: space-between;
 }
 .login-button{
-    margin-top: 10px !important;
+    /* margin-top: 10px !important; */
     background-color: #0D4C92;
     color: aliceblue;
     font-weight: 600;
-    margin: 10px !important;
+    /* margin: 10px !important; */
 }

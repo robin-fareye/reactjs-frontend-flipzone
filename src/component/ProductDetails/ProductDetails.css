@@ -1,8 +1,9 @@
-.main-container{
+.main-detail-container{
     display: flex;
     /* width: 100vw; */
     height: 95vh;
     padding: 20px;
+    gap: 50px;
 }
 .image-container{
     width: 35%;
@@ -11,11 +12,12 @@
 .details-container{
     width: 65%;
     padding: 20px;
-    margin-right: 560px;
+    margin-right: 360px;
     margin-left: 30px;
 }
 .image-item{
-    width: 510px;
+    max-width: 100%;
+    /* min-width: 510px; */
     height: 510px;
     margin-top: 40px;
 }
@@ -23,6 +25,7 @@
     margin-top: 22px;
     display: flex;
     height: 50px;
+    width: 100%;
     gap: 10px;
 }
 .action-button{

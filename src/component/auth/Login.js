@@ -51,7 +51,14 @@ const Login = () => {
 
             let res=await signUpUser(payLoad)
             if(res?.data?.userId!==null){
-                navigate('/',{state: {currentUserId:res?.data?.userId}})
+                
+                if(res?.data?.role==="ROLE_RETAILER"){
+                    navigate('/retailer',{state: {currentUserId:res?.data?.userId}})
+                }
+                else{
+                    navigate('/',{state: {currentUserId:res?.data?.userId}})
+                }
+
             }
 
 

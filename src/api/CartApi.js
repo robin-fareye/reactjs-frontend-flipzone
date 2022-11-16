@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const addItemToCart=async(payload)=>{
-    let res=await axios.post('http://localhost:8085/cartItem',payload)
+    let res=await axios.post('/cartItem',payload)
     if (res?.status === 200) {
         return res
     }

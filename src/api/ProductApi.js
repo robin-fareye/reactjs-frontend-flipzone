@@ -14,8 +14,6 @@ const getAllProducts = async() => {
 
 const postProduct=async(payload)=>{
     let res=await axios.post('http://localhost:8085/product',payload)
-   
-        
     return res
 }
 
@@ -56,7 +54,7 @@ const getProductCategorywise=async(id)=>{
 
 const getProductSellerWise=async(id)=>{
     let res=await axios.get(`http://localhost:8085/product/u/${id}`)
-    if (res?.status === 200) {
+    if (res?.status === 200 || res?.status === 201) {
         return res
     }
     else {

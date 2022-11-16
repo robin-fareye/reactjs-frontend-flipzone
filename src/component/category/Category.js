@@ -7,23 +7,29 @@ import { getAllCategories } from '../../api/CateogryApi';
 import './Category.css'
 
 
-const Category = ({setSelectedCategory}) => {
+const Category = ({ setSelectedCategory }) => {
     const navigate = useNavigate();
-    const [navData,setNavData]=useState([])
-    const getNavData=async()=>{
-        let res=await getAllCategories()
+    const [navData, setNavData] = useState([])
+    const getNavData = async () => {
+        let res = await getAllCategories()
+        
+        res?.data?.unshift({
+            productCategoryId:null,
+            productCategoryImageURL:"https://cdn-icons-png.flaticon.com/512/3843/3843517.png",
+            productCategoryName:"All"
+        })
         setNavData(res?.data)
     }
-    useEffect(()=>{
+    useEffect(() => {
         getNavData()
-    },[])
-   
+    }, [])
+
 
     return (
         <Box className="cat-component">
             {
                 navData.map((item, index) => (
-                    <Box className="cat-container" key={index} onClick = {() => setSelectedCategory(item.productCategoryId)}>
+                    <Box className="cat-container" key={index} onClick={() => setSelectedCategory(item.productCategoryId)}>
                         <img className="cat-image" alt="Category" src={item?.productCategoryImageURL} />
                         <Typography className="cat-text">{item?.productCategoryName}</Typography>
                     </Box>

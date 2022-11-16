@@ -57,7 +57,7 @@ const ProductCatalouge = ({setCartItemCount, dataList}) => {
                     onClick={() => navigate(`/product/${item?.productId}`, {state: {currentUserId:currentUserId, productId: item?.productId}})}
                 />
                 <Typography>{item.productName}</Typography>
-                <Typography>{item.productPrice}</Typography>
+                <Typography>{`$ ${item.productPrice}`}</Typography>
                 <Typography>{item.productDescription}</Typography>
                 <Button style={{marginTop:"13px"}} onClick={()=>handleAddToCart(item)} variant='contained'>Add To Cart</Button>
             </Box>

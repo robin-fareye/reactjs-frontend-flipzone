@@ -12,16 +12,22 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { getAllCategories } from "../../api/CateogryApi"
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
+import { border, borderRadius } from '@mui/system';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
 const RetailerAddProduct = () => {
 
+    const location=useLocation()
+    const navigate=useNavigate()
     const [formData, setFormData] = useState({ category: "", name: "", description: "", price: "", quantity: "", photo: "", imageUrl: "" })
     // const [formDataError, setformDataError] = useState({})
     const [imageUpload, setImageUpload] = useState(null)
     const [categoryData, setCategoryData] = useState([])
+    const [isAddDisabled,setIsAddDisabled]=useState(true)
     let imageName = ""
     const imagesListRef = ref(storage, "images/");
     const handleChange = (event) => {
@@ -33,6 +39,7 @@ const RetailerAddProduct = () => {
             })
         })
     }
+
     const getCategoryData = async () => {
         const result = await getAllCategories()
         setCategoryData(result?.data)
@@ -50,6 +57,8 @@ const RetailerAddProduct = () => {
                     response.items.forEach((item) => {
                         if (item?._location?.path_ === `images/${imageName}`) {
                             getDownloadURL(item).then((url) => {
+                                console.log("now here");
+                                setIsAddDisabled(false);
                                 setFormData((prevState) => {
                                     return { ...prevState, imageUrl: url }
                                 })
@@ -64,6 +73,18 @@ const RetailerAddProduct = () => {
 
     const uploadProduct=async(payload)=>{
         let res=await postProduct(payload)
+        navigate('/retailer',{state:{currentUserId:location?.state?.currentUserId}})
+        
+    }
+
+    const handleSetImageUpload=(file)=>{
+        setImageUpload(()=>{
+            return file
+        })
+        
+    }
+    const handleUpload=()=>{
+        handleFileUpload()
     }
     const handleAdd = () => {
         let id
@@ -75,13 +96,14 @@ const RetailerAddProduct = () => {
 
         const payload = {
             productName: formData.name,
-            userId: 1,
+            userId: location?.state?.currentUserId,
             productPrice: parseInt(formData.price),
             productDescription: formData.description,
             productQuantity: parseInt(formData.quantity),
             productImageURL: formData.imageUrl,
             categoryId: id
         }
+        
 
         uploadProduct(payload)
 
@@ -89,26 +111,28 @@ const RetailerAddProduct = () => {
     }
 
     return (
-        <Box className="main-container">
+        <Box className="main-details-container">
             <Typography
                 variant='h4'
                 className='container-header'>Add Your Product</Typography>
             <TextField
+                className="add-product-input"
                 required onChange={(e) => handleChange(e)}
                 value={formData.name}
                 name='name'
-                className='text-field'
                 label="Product Name"
-                variant="standard"
+                variant="outlined"
             />
-            <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+            <FormControl variant="standard" sx={{ m: 1, width: 300, mt: 3 }}>
                 <Select
                     displayEmpty
+                    variant="outlined"
                     name='category'
+                    style={{minWidth:"400px",maxWidth:"400px"}}
                     onChange={(e) => handleChange(e)}
-                    input={<OutlinedInput />}
+                    //input={<OutlinedInput />}
                     value={formData.category}
-                    inputProps={{ 'aria-label': 'Without label' }}
+                    // inputProps={{ 'aria-label': 'Without label' }}
                 >
                     <MenuItem disabled value="">
                         <em>Select Category</em>
@@ -124,37 +148,41 @@ const RetailerAddProduct = () => {
                     ))}
                 </Select>
             </FormControl>
-            <Box style={{ display: 'flex' }}>
-                <Input onChange={(event) => { setImageUpload(event?.target?.files[0]) }} type='file' />
-                <Button onClick={handleFileUpload} variant='contained'>upload</Button>
-            </Box>
+            
+                <Input style={{
+                    width:"400px" ,border:"1px solid #d3d3d3",
+                    borderRadius:"3px",borderBottom:"0px",height:"58px",marginBottom:"4px"
+                    }} onChange={(event) => { handleSetImageUpload(event?.target?.files[0]) }} type='file' />
+                <Button variant='contained' onClick={handleFileUpload}>Upload</Button>
+               
 
             <TextField
                 required onChange={(e) => handleChange(e)}
                 value={formData.description}
                 name='description'
-                className='text-field'
+                className="add-product-input"
                 label="Product Description"
-                variant="standard"
+                variant="outlined"
             />
             <TextField
                 required onChange={(e) => handleChange(e)}
                 value={formData.price}
                 name='price'
-                className='text-field'
+                className="add-product-input"
                 label="Price of single item"
-                variant="standard"
+                variant="outlined"
             />
             <TextField
                 required onChange={(e) => handleChange(e)}
                 value={formData.quantity}
                 name='quantity'
-                className='text-field'
+                className="add-product-input"
                 label="Number of items"
-                variant="standard"
+                variant="outlined"
             />
+            
 
-            <Button variant="contained" onClick={handleAdd} className="add-button">Add</Button>
+            <Button disabled={isAddDisabled} variant="contained" onClick={handleAdd} className="add-button">Add</Button>
         </Box>
     )
 }

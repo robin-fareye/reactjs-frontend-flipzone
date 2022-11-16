@@ -14,21 +14,21 @@ import Select from "@mui/material/Select";
 import { getAllCategories } from "../../api/CateogryApi";
 import { getProductSellerWise } from "../../api/ProductApi.js";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const RetailerProductListing = () => {
+  const location = useLocation()
   const [items, setItems] = useState([]);
 
+  const getProducts = async () => {
+    let res = await getProductSellerWise(location?.state?.currentUserId)
+    console.log("res", res);
+    setItems(res?.data)
+  }
+
   useEffect(() => {
-    fetch(`/product/u/2`)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        //setFilterData(responseJson);
-        setItems(responseJson);
-      })
-      .catch((error) => console.log("get all categories api fail ", error));
-    // const data = getProductSellerWise(2);
-    // console.log(".........", data);
-    // setItems(data);
+    console.log("id: ", location?.state?.currentUserId);
+    getProducts()
   }, []);
 
   const navigate = useNavigate();
@@ -39,13 +39,14 @@ const RetailerProductListing = () => {
         <Box className="image-and-count">
           <img
             // className='image-item-catalouge'
+            style={{ maxWidth: "100%" }}
             src={item.productImageURL}
             alt="image"
           />
         </Box>
         <Box className="description">
           <Typography variant="h6">{item.productName}</Typography>
-          <Typography variant="body2">{`Seller: ${item.seller}`}</Typography>
+          <Typography variant="body2">{`Description: ${item.productDescription}`}</Typography>
           <Typography style={{ marginTop: "13px" }} variant="h5">
             {item.price}
           </Typography>
@@ -57,10 +58,19 @@ const RetailerProductListing = () => {
     );
   };
   return (
-    <Box className="main-container">
+    <Box className="listing-container"  display='flex' style={{justifyContent:'center',margin:"10px"}}>
       <Box className="item-list">
-        <Box className="order-list-header">
+        <Box className="order-list-header" display='flex' style={{justifyContent:'space-between'}}>
           <Typography className="item-count">{`My Product Listing(${items?.length})`}</Typography>
+          <Button
+            variant="contained"
+            className="login-button"
+            onClick={() => {
+              navigate("/addProduct", { state: { currentUserId: location?.state?.currentUserId } });
+            }}
+          >
+            Add New Product
+          </Button>
         </Box>
         <Box className="list-box">
           {items?.map((item, index) => {
@@ -68,15 +78,7 @@ const RetailerProductListing = () => {
           })}
         </Box>
       </Box>
-      <Button
-        variant="contained"
-        className="login-button"
-        onClick={() => {
-          navigate("/addProduct", { state: { id: 2 } });
-        }}
-      >
-        Add New Product
-      </Button>
+
     </Box>
   );
 };

@@ -22,7 +22,7 @@ const HomePage = () => {
   useEffect(() => {
     getProductList()
   }, [])
-
+ 
   const getCategoryWiseProduct=async()=>{
     let res=await getProductCategorywise(selectedCategory)
     setDataList(res?.data)
@@ -30,7 +30,9 @@ const HomePage = () => {
   useEffect(()=>{
     if(selectedCategory!==null){
       getCategoryWiseProduct()
-      setSelectedCategory(null)
+    }
+    else{
+      getProductList()
     }
   },[selectedCategory])
   const getItemCount = async () => {

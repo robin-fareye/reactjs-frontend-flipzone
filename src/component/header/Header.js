@@ -71,7 +71,6 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
         setSearchText(text);
     }
 
-    console.log("cartitemcount:",currentUserId);
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Box  style={{ width: '100%', backgroundColor: '#0D4C92', color: 'aliceblue' }}>

@@ -53,7 +53,7 @@ const ProductDetails = ({productId, currentUserId, setCartItemCount}) => {
 
   return (
     <>
-    <Box className='main-container'>
+    <Box className='main-detail-container'>
         <Box className='image-container'>
             <img 
             className='image-item'
