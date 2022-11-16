@@ -22,8 +22,8 @@ export const ProductPage = () => {
      }, [])
     return (
     <>
-        <Header cartItemCount={cartItemCount} currentUserId={currentUserId} />
-        <ProductDetails productId={productId} currentUserId={currentUserId}/>
+        <Header cartItemCount={cartItemCount} userId={currentUserId} />
+        <ProductDetails productId={productId} currentUserId={currentUserId} setCartItemCount={setCartItemCount}/>
     </>
   )
 }

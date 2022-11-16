@@ -9,7 +9,7 @@ import { getProductById } from '../../api/ProductApi';
 import { addItemToCart } from '../../api/CartApi';
 
 
-const ProductDetails = ({productId, currentUserId}) => {
+const ProductDetails = ({productId, currentUserId, setCartItemCount}) => {
     const navigate = useNavigate();
     const location = useLocation();
     //const { productId } = useParams();
@@ -39,6 +39,9 @@ const ProductDetails = ({productId, currentUserId}) => {
         }
 
         addItem(payload)
+        setCartItemCount((prevCount) => {
+            return prevCount+1
+        })
     }
 
     const handleBuyNow =()=> {
