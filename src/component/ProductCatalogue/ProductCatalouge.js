@@ -38,6 +38,7 @@ const ProductCatalouge = ({setCartItemCount, dataList}) => {
         const res=await addItemToCart(payload)
     }
     const getCardItem = (item, index) => {
+        const description = item?.productDescription?.split('#');
         return (
             <Box style=
                 {{
@@ -58,7 +59,7 @@ const ProductCatalouge = ({setCartItemCount, dataList}) => {
                 />
                 <Typography>{item.productName}</Typography>
                 <Typography>{`$ ${item.productPrice}`}</Typography>
-                <Typography>{item.productDescription}</Typography>
+                <Typography>{description[0]}</Typography>
                 <Button style={{marginTop:"13px"}} onClick={()=>handleAddToCart(item)} variant='contained'>Add To Cart</Button>
             </Box>
         )

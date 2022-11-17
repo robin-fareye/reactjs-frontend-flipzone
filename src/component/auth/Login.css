@@ -51,16 +51,14 @@
     padding-top:6px;
     margin: 10px;
 }
-.sign-up-text-button{
-    
-}
 .left-box-text{
     color: azure;
     margin-bottom: 20px !important;
 }
 .logo-image{
     height: 50%;
-    width: 30%;
+    min-height: 35%;
+    min-width: 30%;
 }
 #user-type{
     margin: 10px;

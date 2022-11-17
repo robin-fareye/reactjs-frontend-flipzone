@@ -7,7 +7,7 @@ import { getAllCategories } from '../../api/CateogryApi';
 import './Category.css'
 
 
-const Category = ({ setSelectedCategory }) => {
+const Category = ({ selectedCategory,setSelectedCategory }) => {
     const navigate = useNavigate();
     const [navData, setNavData] = useState([])
     const getNavData = async () => {
@@ -24,12 +24,23 @@ const Category = ({ setSelectedCategory }) => {
         getNavData()
     }, [])
 
+    const getContainerStyle=(item)=>{
+        if(item?.productCategoryId===selectedCategory){
+            return "cat-container shadow-on-select"
+        }
+        else{
+            return "cat-container"
+        }
+    }
+
 
     return (
         <Box className="cat-component">
             {
                 navData.map((item, index) => (
-                    <Box className="cat-container" key={index} onClick={() => setSelectedCategory(item.productCategoryId)}>
+                    <Box
+                     
+                     className={getContainerStyle(item)} key={index} onClick={() => setSelectedCategory(item.productCategoryId)}>
                         <img className="cat-image" alt="Category" src={item?.productCategoryImageURL} />
                         <Typography className="cat-text">{item?.productCategoryName}</Typography>
                     </Box>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
 import './Header.css'
 import { ShoppingCart } from '@mui/icons-material'
@@ -13,6 +14,7 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { getCartItems } from '../../api/CartApi';
+import { logoutUser } from '../../api/Login';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -71,6 +73,14 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
         setSearchText(text);
     }
 
+    const logout=async()=>{
+        return await logoutUser()
+    }
+    const handleLogout=()=>{
+        let res=logout()
+        console.log("RESSS:",res);
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Box  style={{ width: '100%', backgroundColor: '#0D4C92', color: 'aliceblue' }}>
@@ -84,14 +94,14 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                     >
                         <img style={{ height: 30, width: 30 }} alt="LOGO" src={require('../../assets/logo.png')} onClick={() => {
                         
-                            navigate("/", {state: {currentUserId: currentUserId}})}}/>
+                            navigate("/homePage", {state: {currentUserId: currentUserId}})}}/>
                     </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate("/homePage",{state: {currentUserId: currentUserId}})}
                     >
                         FlipZone
                     </Typography>
@@ -121,7 +131,7 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                     <Button
                         color="inherit"
                         sx={{ ml: 5, fontSize: 15 }}
-                        onClick={() => navigate("/")}
+                        onClick={handleLogout}
                     >
                         Log out
                     </Button>

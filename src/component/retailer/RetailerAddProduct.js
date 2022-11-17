@@ -60,6 +60,7 @@ const RetailerAddProduct = () => {
                                 console.log("now here");
                                 setIsAddDisabled(false);
                                 setFormData((prevState) => {
+                                    console.log("URL",url);
                                     return { ...prevState, imageUrl: url }
                                 })
                             });

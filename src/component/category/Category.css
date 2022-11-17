@@ -9,6 +9,7 @@
     margin-bottom: 30px;
     border-bottom: 1px solid rgb(177, 177, 177);
     -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
+            box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
 
 }
 
@@ -19,6 +20,12 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+
+}
+
+.shadow-on-select{
+    -webkit-box-shadow: 0 5px 9px -6px #0D4C92;
+            box-shadow: 0 5px 9px -6px #0D4C92;
 }
 
 .cat-image {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import './Login.css'
 import Box from '@mui/material/Box'
@@ -8,13 +9,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import {  useNavigate} from 'react-router';
 import FormLabel from '@mui/material/FormLabel';
-import { signUpUser, signInUser } from "../../api/Login"
+import { signUpUser, signInUser, getLoggedInUser } from "../../api/Login"
 import axios from "axios"
 const Login = () => {
 
     const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(false)
-    const [formData, setFormData] = useState({ userName: "", email: "", password: "", confirmPassword: "", userType: "ROLE_USER" })
+    const [formData, setFormData] = useState({ userName: "", email: "qwer@gmail.com", password: "qwer", confirmPassword: "", userType: "ROLE_USER" })
     const [formDataError, setFormDataError] = useState({})
     const handleChange = (event) => {
         const { name, value } = event?.target
@@ -26,16 +27,26 @@ const Login = () => {
         })
         //validateFormData()
     }
+    
+    const signIn=async()=>{
+        const payLoad = `username=${formData.email}&password=${formData.password}`
+        let res= await signInUser(payLoad)
+        if(res!==null){
+            if(res?.role==="ROLE_RETAILER"){
+                navigate('/retailer',{state: {currentUserId:res?.userId}})
+            }
+            else{
+                console.log(res?.userId);
+                navigate('/homePage',{state: {currentUserId:res?.userId}})
+            }
+        }
+
+       
+    }
 
     const handleSignIn = () => {
-        // validateFormData()
-        // const payLoad={
-        //     username:formData.email,
-        //     password:formData.password
-        // }
         if (validateFormDataForLogin()) {
-            const payLoad = `username=${formData.email}&password=${formData.password}`
-            signInUser(payLoad)
+            signIn()
         }
     }
 
@@ -56,7 +67,7 @@ const Login = () => {
                     navigate('/retailer',{state: {currentUserId:res?.data?.userId}})
                 }
                 else{
-                    navigate('/',{state: {currentUserId:res?.data?.userId}})
+                    navigate('/homePage',{state: {currentUserId:res?.data?.userId}})
                 }
 
             }
@@ -71,7 +82,7 @@ const Login = () => {
     }
 
     const isValidEmail = (val) => {
-        let regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w\w+)+$/
+        let regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w\w+)+$/ //eslint-disable-line
         if(regex.test(val)){
             return true;
         }

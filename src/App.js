@@ -1,6 +1,6 @@
+/* eslint-disable */
 import React from 'react';
 import { BrowserRouter, Routes,  Route } from 'react-router-dom';
-// import Switch from 'react-router-dom'
 import './App.css';
 
 import Login from './component/auth/Login';
@@ -34,7 +34,8 @@ function App() {
     <BrowserRouter>
       <div className="container">
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/homePage" element={<HomePage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/product/:id" element={<ProductPage />} />

@@ -68,7 +68,9 @@ const HomePage = () => {
       <Header
         cartItemCount={cartItemCount} userId={currentUserId} setSearchText={setSearchText} 
       />
-      <Category setSelectedCategory={setSelectedCategory} />
+      <Category 
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory} />
       <ProductCatalouge 
       dataList={dataList}
       setCartItemCount={setCartItemCount} />
