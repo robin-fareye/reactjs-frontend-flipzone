@@ -124,7 +124,7 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                     <Typography >
                         Cart
                     </Typography>
-                    {<Typography className="cart-item-count">
+                    {cartItemCount>0 && <Typography className="cart-item-count">
                         { cartItemCount }
                     </Typography>}
                     </Box>
