@@ -74,11 +74,16 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
     }
 
     const logout=async()=>{
-        return await logoutUser()
+        let res=await logoutUser()
+        return  res
     }
     const handleLogout=()=>{
         let res=logout()
-        console.log("RESSS:",res);
+        navigate("/login")
+    }
+
+    const handleMyOrders=()=>{
+        navigate('/orders',{state:{currentUserId:userId}})
     }
 
     return (
@@ -128,6 +133,14 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                         { cartItemCount }
                     </Typography>}
                     </Box>
+                    <Button
+                        color="inherit"
+                        variant='outlined'
+                        sx={{ ml: 5, fontSize: 15 }}
+                        onClick={handleMyOrders}
+                    >
+                        My Orders
+                    </Button>
                     <Button
                         color="inherit"
                         sx={{ ml: 5, fontSize: 15 }}

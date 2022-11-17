@@ -14,8 +14,8 @@ import axios from "axios"
 const Login = () => {
 
     const navigate = useNavigate();
-    const [isLogin, setIsLogin] = useState(false)
-    const [formData, setFormData] = useState({ userName: "", email: "qwer@gmail.com", password: "qwer", confirmPassword: "", userType: "ROLE_USER" })
+    const [isLogin, setIsLogin] = useState(true)
+    const [formData, setFormData] = useState({ userName: "", email: "", password: "", confirmPassword: "", userType: "ROLE_USER" })
     const [formDataError, setFormDataError] = useState({})
     const handleChange = (event) => {
         const { name, value } = event?.target

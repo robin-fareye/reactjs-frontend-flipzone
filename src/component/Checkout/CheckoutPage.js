@@ -13,7 +13,7 @@ const CheckoutPage = () => {
     const [formData, setFormData] = useState({ address: "", pinCode: "", cardNumber: "", cardHolder: "", cvv: "" })
     const [formDataError, setFormDataError] = useState({})
     const [selectedAddress, setSelectedAddress] = useState(0)
-
+    
     const [addressList, setAddressList] = useState([
         {
             pincode: "125050",
@@ -103,37 +103,39 @@ const CheckoutPage = () => {
         const res = await getCartItems(location?.state?.currentUserId)
         setItems(res?.data)
     }
-    console.log(items);
     useEffect(() => {
         getItems()
     }, [])
 
     const order = async (payload) => {
-        console.log("hello");
+
+        console.log("hello:",payload);
         let res = await placeOrder(payload)
+        console.log(res);
     }
     const getOrderItems = () => {
-        let orderItems = items.map((item) => {
-            return {
-                productId: item?.cartProductId,
-                quantity: item?.cartProductQuantity,
-                total: (item?.cartProductQuantity * item?.cartProductPrice)
-            }
-        })
+        let orderItems = items?.map((item) => {
 
+            return ({
+                product: {productId:item?.product?.productId},
+                quantity: item?.cartItemQuantity,                
+                total: item?.cartItemQuantity*item?.cartItemPrice
+            })
+        })
+        console.log("orderItms: ",orderItems);
         return orderItems
     }
 
     const getTotalAmount = () => {
         let total = 0;
         items.forEach(element => {
-            total = total + (element?.cartProductPrice * element?.cartProductQuantity)
+            total = total + ((element?.cartProductPrice) * (element?.cartProductQuantity))
         });
 
         return total
     }
     const handlePlaceOrder = () => {
-        if (validateFormData()) {
+        if (!validateFormData()) {
             let payload = {
 
                 transactions: [
@@ -154,7 +156,7 @@ const CheckoutPage = () => {
                 addressId: null,
                 orderDate: null
             }
-
+            
             order(payload)
         }
     }

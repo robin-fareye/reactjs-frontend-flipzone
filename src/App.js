@@ -14,6 +14,7 @@ import RetailerAddProduct from './component/retailer/RetailerAddProduct';
 import RetailerProductListing from './component/retailer/RetailerProductListing';
 import HomePage from './component/HomePage/HomePage';
 import ProductPage from './component/ProductPage/ProductPage';
+import MyOrders from './component/MyOrders/MyOrders';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/homePage" element={<HomePage />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/orders" element={<MyOrders />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/checkout" element={<CheckoutPage />}/>

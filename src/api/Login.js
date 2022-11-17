@@ -24,5 +24,6 @@ const signInUser=async(payLoad)=>{
 
 const logoutUser=async()=>{
     const result= await axios.get(`/logout`)
+    return result
 }
 export  {signUpUser,signInUser,getLoggedInUser,logoutUser}

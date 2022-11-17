@@ -5,4 +5,10 @@ const placeOrder=async(payLoad)=>{
     return result
 }
 
-export {placeOrder}
+const getOrderByUserId=async(id)=>{
+    const result = await axios.get(`http://localhost:8085/order/u/${id}`)
+    if(result?.status===200){
+        return result?.data
+    }
+}
+export {placeOrder,getOrderByUserId}
