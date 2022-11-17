@@ -24,6 +24,8 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
+            box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
 }
 
 .checkout-fields {
@@ -36,6 +38,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
+            box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
 }
 
 .order-button {
@@ -43,4 +47,19 @@ body {
     width: 30%;
     margin-top: 20px !important;
     margin-left: 11px !important;
+}
+
+.address-list{
+    margin-top: 20px;
+    border: 1px solid rgba(139, 138, 138, 0.664);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgba(99, 97, 97, 0.493);
+    -webkit-box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
+            box-shadow: 0 4px 6px -6px rgb(87, 87, 87);
+}
+.address-card{
+    margin-bottom: 30px;
 }
