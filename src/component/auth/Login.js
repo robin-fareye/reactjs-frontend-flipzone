@@ -70,6 +70,14 @@ const Login = () => {
         })
     }
 
+    const isValidEmail = (val) => {
+        let regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w\w+)+$/
+        if(regex.test(val)){
+            return true;
+        }
+        return false;
+    }
+
     const validateFormDataForLogin=()=>{
         let count=0
         if (formData.email === "") {
@@ -78,9 +86,18 @@ const Login = () => {
                 return { ...prevState, emailError: true }
             })
         }
+        else if(!isValidEmail(formData.email)) {
+            count++
+            setFormDataError((prevState) => {
+                return { ...prevState, emailValidError: false }
+            })
+        }
         else {
             setFormDataError((prevState) => {
                 return { ...prevState, emailError: false }
+            })
+            setFormDataError((prevState) => {
+                return { ...prevState, emailValidError: false }
             })
         }
         if (formData.password === "") {
@@ -118,9 +135,18 @@ const Login = () => {
                 return { ...prevState, emailError: true }
             })
         }
+        else if(!isValidEmail(formData.email)) {
+            count++
+            setFormDataError((prevState) => {
+                return { ...prevState, emailValidError: true }
+            })
+        }
         else {
             setFormDataError((prevState) => {
                 return { ...prevState, emailError: false }
+            })
+            setFormDataError((prevState) => {
+                return { ...prevState, emailValidError: false }
             })
         }
         if (formData.password === "") {
@@ -191,7 +217,8 @@ const Login = () => {
                         className='auth-text-field' label="Name" variant="outlined" />}
                     <TextField
                         required onChange={(e) => handleChange(e)}
-                        error={formDataError.emailError}
+                        error={formDataError.emailError || formDataError.emailValidError}
+                        helperText={formDataError.emailValidError? "Email is not valid" : ""}
                         value={formData.email} name='email' className='auth-text-field'
                         label="Email Address" variant="outlined" />
                     <TextField
@@ -203,7 +230,7 @@ const Login = () => {
                     {!isLogin && <TextField
                         required onChange={(e) => handleChange(e)}
                         error={formDataError.confirmPasswordError || formDataError.passwordNotMatchedError}
-                        helperText={formDataError.passwordNotMatchedError ? "Password did'nt matched" : ""}
+                        helperText={formDataError.passwordNotMatchedError ? "Password did not match" : ""}
                         value={formData.confirmPassword} name='confirmPassword'
                         className='auth-text-field' label="Confirm Password"
                         variant="outlined" />}
