@@ -15,6 +15,8 @@ import { getAllCategories } from "../../api/CateogryApi";
 import { getProductSellerWise } from "../../api/ProductApi.js";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { async } from "@firebase/util";
+import { logoutUser } from "../../api/Login";
 
 const RetailerProductListing = () => {
   const location = useLocation()
@@ -33,6 +35,11 @@ const RetailerProductListing = () => {
 
   const navigate = useNavigate();
 
+  const hanldeLogout=async()=>{
+    let res=await logoutUser()
+    console.log("i ma ");
+    navigate("/login");
+  }
   const renderCardItem = (item, index) => {
     return (
       <Box className="card-list-container">
@@ -62,6 +69,7 @@ const RetailerProductListing = () => {
       <Box className="item-list">
         <Box className="order-list-header" display='flex' style={{justifyContent:'space-between'}}>
           <Typography className="item-count">{`My Product Listing(${items?.length})`}</Typography>
+          <Box>
           <Button
             variant="contained"
             className="login-button"
@@ -71,6 +79,18 @@ const RetailerProductListing = () => {
           >
             Add New Product
           </Button>
+          <Button
+            variant="contained"
+            className="login-button"
+            onClick={
+              ()=>{hanldeLogout()
+              navigate('/login')
+              }
+            }
+          >
+            LogOut
+          </Button>
+          </Box>
         </Box>
         <Box className="list-box">
           {items?.map((item, index) => {

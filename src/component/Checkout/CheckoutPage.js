@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './CheckoutPage.css'
-import { getCartItems } from '../../api/CartApi'
+import { clearCart, getCartItems } from '../../api/CartApi'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { placeOrder } from '../../api/OrderApi'
 
@@ -107,11 +107,18 @@ const CheckoutPage = () => {
         getItems()
     }, [])
 
+    const deleteCart=async()=>{
+        let res = await clearCart(location?.state?.currentUserId)
+        if(res?.status===200){
+            navigate("/homePage" , {state:{currentUserId:location?.state?.currentUserId}})
+        }
+    }
+
     const order = async (payload) => {
 
         console.log("hello:",payload);
         let res = await placeOrder(payload)
-        console.log(res);
+        deleteCart()
     }
     const getOrderItems = () => {
         let orderItems = items?.map((item) => {
@@ -129,7 +136,7 @@ const CheckoutPage = () => {
     const getTotalAmount = () => {
         let total = 0;
         items.forEach(element => {
-            total = total + ((element?.cartProductPrice) * (element?.cartProductQuantity))
+            total = total + (element?.cartItemPrice * element?.cartItemQuantity)
         });
 
         return total

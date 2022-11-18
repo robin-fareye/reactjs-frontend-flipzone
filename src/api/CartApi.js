@@ -49,7 +49,6 @@ const increaseCartItem=async(id)=>{
 }
 
 const deleteCartItem=async(id)=>{
-    console.log("CARD ITEM ID: ", id);
     let res=await axios.delete(`/cartItem/c/`+id)
     if (res?.status === 200) {
         return res
@@ -61,5 +60,9 @@ const deleteCartItem=async(id)=>{
     }
 }
 
+const clearCart=async(id)=>{
+    let res=await axios.delete(`/cartItem/u/${id}`)
+    return res
+}
 
-export {addItemToCart,getCartItems,decreaseCartItem,increaseCartItem,deleteCartItem}
+export {addItemToCart,getCartItems,decreaseCartItem,increaseCartItem,deleteCartItem,clearCart}
