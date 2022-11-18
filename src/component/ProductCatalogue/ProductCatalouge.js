@@ -59,7 +59,7 @@ const ProductCatalouge = ({setCartItemCount, dataList}) => {
                 />
                 <Typography>{item.productName}</Typography>
                 <Typography>{`$ ${item.productPrice}`}</Typography>
-                <Typography>{description[0]}</Typography>
+                <Typography style={{whiteSpace:"nowrap",overflow: "hidden", textOverflow: "ellipsis", width: '70px'}}>{description[0]}</Typography>
                 <Button style={{marginTop:"13px"}} onClick={()=>handleAddToCart(item)} variant='contained'>Add To Cart</Button>
             </Box>
         )

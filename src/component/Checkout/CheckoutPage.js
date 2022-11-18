@@ -142,7 +142,7 @@ const CheckoutPage = () => {
         return total
     }
     const handlePlaceOrder = () => {
-        if (!validateFormData()) {
+        if (validateFormData()) {
             let payload = {
 
                 transactions: [
