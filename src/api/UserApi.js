@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getUserAddresses = async (id) => {
-    let res = await axios.get(`http://localhost:8085/u/${id}`)
+    let res = await axios.get(`http://localhost:8085/address/u/${id}`)
     if (res?.status === 200) {
         return res
     }
