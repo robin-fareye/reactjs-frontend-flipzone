@@ -4,6 +4,7 @@ import './CheckoutPage.css'
 import { clearCart, getCartItems } from '../../api/CartApi'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { placeOrder } from '../../api/OrderApi'
+import { getUserAddresses, addAddressForUser } from '../../api/UserApi'
 
 const CheckoutPage = () => {
 
@@ -13,21 +14,17 @@ const CheckoutPage = () => {
     const [formData, setFormData] = useState({ address: "", pinCode: "", cardNumber: "", cardHolder: "", cvv: "" })
     const [formDataError, setFormDataError] = useState({})
     const [selectedAddress, setSelectedAddress] = useState(0)
-    
-    const [addressList, setAddressList] = useState([
-        {
-            pincode: "125050",
-            description: "flat 123, tower Y, Amarpali Sapphire, sector 45, Noida"
-        },
-        {
-            pincode: "125050",
-            description: "flat 123, tower Y, Amarpali Sapphire, sector 45, Noida"
-        },
-        {
-            pincode: "125050",
-            description: "flat 123, tower Y, Amarpali Sapphire, sector 45, Noida"
-        }
-    ])
+    const [addressList, setAddressList] = useState([])
+    console.log(location?.state?.currentUserId)
+
+    const getAddressList = async () =>{
+        let res = await getUserAddresses(location?.state?.currentUserId)
+        setAddressList(addressList(res?.data))
+    }
+
+    useEffect(() => {
+        getAddressList()
+    }, [])
 
 
     const handleChange = (event) => {
@@ -169,8 +166,17 @@ const CheckoutPage = () => {
     }
 
     const handleAddNewAddress=()=>{
+        const payload = {
+            pinCode :  parseInt(formData.pinCode),
+            description: formData.address,
+            userId: location?.state?.currentUserId
+        }
+        postNewAddress(payload)
+        
+    }
 
-        //TODO
+    const postNewAddress = async (payload) => {
+        let res = await addAddressForUser(payload)
     }
     const handleSelectAddress = (item, index) => {
         setSelectedAddress(index)
