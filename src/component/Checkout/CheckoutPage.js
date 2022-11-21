@@ -13,13 +13,13 @@ const CheckoutPage = () => {
     const [items, setItems] = useState([])
     const [formData, setFormData] = useState({ address: "", pinCode: "", cardNumber: "", cardHolder: "", cvv: "" })
     const [formDataError, setFormDataError] = useState({})
-    const [selectedAddress, setSelectedAddress] = useState(0)
+    const [selectedAddress, setSelectedAddress] = useState([])
     const [addressList, setAddressList] = useState([])
     console.log(location?.state?.currentUserId)
 
     const getAddressList = async () =>{
         let res = await getUserAddresses(location?.state?.currentUserId)
-        setAddressList(addressList(res?.data))
+        setAddressList(res?.data)
     }
 
     useEffect(() => {
@@ -39,25 +39,27 @@ const CheckoutPage = () => {
 
     const validateFormData = () => {
         let count = 0
-        if (formData.address === "") {
-            count++
-            setFormDataError((prevState) => {
-                return { ...prevState, addressError: true }
-            })
-        } else {
-            setFormDataError((prevState) => {
-                return { ...prevState, addressError: false }
-            })
-        }
-        if (formData.pinCode === "") {
-            count++
-            setFormDataError((prevState) => {
-                return { ...prevState, pinCodeError: true }
-            })
-        } else {
-            setFormDataError((prevState) => {
-                return { ...prevState, pinCodeError: false }
-            })
+        if(selectedAddress===""){
+            if (formData.address === "") {
+                count++
+                setFormDataError((prevState) => {
+                    return { ...prevState, addressError: true }
+                })
+            } else {
+                setFormDataError((prevState) => {
+                    return { ...prevState, addressError: false }
+                })
+            }
+            if (formData.pinCode === "") {
+                count++
+                setFormDataError((prevState) => {
+                    return { ...prevState, pinCodeError: true }
+                })
+            } else {
+                setFormDataError((prevState) => {
+                    return { ...prevState, pinCodeError: false }
+                })
+            }
         }
         if (formData.cardNumber === "") {
             count++
@@ -157,7 +159,7 @@ const CheckoutPage = () => {
                 },
                 status: "On the Way",
                 total: getTotalAmount(),
-                addressId: null,
+                addressId: selectedAddress?.address_id,
                 orderDate: null
             }
             
@@ -179,12 +181,12 @@ const CheckoutPage = () => {
         let res = await addAddressForUser(payload)
     }
     const handleSelectAddress = (item, index) => {
-        setSelectedAddress(index)
+        setSelectedAddress(item)
     }
 
     const renderAddresssCard = (item, index) => {
         return (
-            <Box style={{ color: selectedAddress === index ? "#0D4C92" : "rgba(99, 97, 97, 0.493)" }} className='address-card' onClick={() => handleSelectAddress(item, index)}>
+            <Box style={{ color: selectedAddress === item ? "#0D4C92" : "rgba(99, 97, 97, 0.493)" }} className='address-card' onClick={() => handleSelectAddress(item, index)}>
                 <Typography variant='body1' className='address-text'>{`Address Line: ${item?.description}`}</Typography>
                 <Typography variant='body2' className='address-text'>{`Pin Code: ${item?.pincode}`}</Typography>
             </Box>
