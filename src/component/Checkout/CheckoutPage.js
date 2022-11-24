@@ -188,7 +188,7 @@ const CheckoutPage = () => {
         return (
             <Box style={{ color: selectedAddress === item ? "#0D4C92" : "rgba(99, 97, 97, 0.493)" }} className='address-card' onClick={() => handleSelectAddress(item, index)}>
                 <Typography variant='body1' className='address-text'>{`Address Line: ${item?.description}`}</Typography>
-                <Typography variant='body2' className='address-text'>{`Pin Code: ${item?.pincode}`}</Typography>
+                <Typography variant='body2' className='address-text'>{`Pin Code: ${item?.pinCode}`}</Typography>
             </Box>
         )
     }

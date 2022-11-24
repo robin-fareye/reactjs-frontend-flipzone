@@ -133,14 +133,14 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                         { cartItemCount }
                     </Typography>}
                     </Box>
-                    <Button
+                    {/* <Button
                         color="inherit"
                         variant='outlined'
                         sx={{ ml: 5, fontSize: 15 }}
                         onClick={handleMyOrders}
                     >
                         My Orders
-                    </Button>
+                    </Button> */}
                     <Button
                         color="inherit"
                         sx={{ ml: 5, fontSize: 15 }}
