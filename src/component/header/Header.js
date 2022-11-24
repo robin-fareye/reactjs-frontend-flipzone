@@ -79,11 +79,15 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
     }
     const handleLogout=()=>{
         let res=logout()
-        navigate("/login")
+        navigate("/login")              
     }
 
     const handleMyOrders=()=>{
         navigate('/orders',{state:{currentUserId:userId}})
+    }
+
+    const handleProfile=()=>{
+        navigate('/profile', {state:{cartItemCount:cartItemCount, currentUserId:userId}})
     }
 
     return (
@@ -133,14 +137,24 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                         { cartItemCount }
                     </Typography>}
                     </Box>
-                    <Button
+                    {/* <Button
                         color="inherit"
                         variant='outlined'
                         sx={{ ml: 5, fontSize: 15 }}
                         onClick={handleMyOrders}
                     >
                         My Orders
+                    </Button> */}
+
+                    <Button
+                        color="inherit"
+                        variant='outlined'
+                        sx={{ ml: 5, fontSize: 15 }}
+                        onClick={handleProfile}
+                    >
+                        Profile
                     </Button>
+
                     <Button
                         color="inherit"
                         sx={{ ml: 5, fontSize: 15 }}

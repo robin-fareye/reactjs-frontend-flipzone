@@ -14,6 +14,7 @@ const CheckoutPage = () => {
     const [formData, setFormData] = useState({ address: "", pinCode: "", cardNumber: "", cardHolder: "", cvv: "" })
     const [formDataError, setFormDataError] = useState({})
     const [selectedAddress, setSelectedAddress] = useState([])
+    const [selectedAddress, setSelectedAddress] = useState([])
     const [addressList, setAddressList] = useState([])
     console.log(location?.state?.currentUserId)
 
@@ -183,9 +184,7 @@ const CheckoutPage = () => {
         let res = await addAddressForUser(payload)
     }
     const handleSelectAddress = (item, index) => {
-
         setSelectedAddress(item)
-        console.log(item?.address_id)
     }
 
     const renderAddresssCard = (item, index) => {
