@@ -15,6 +15,7 @@ import RetailerProductListing from './component/retailer/RetailerProductListing'
 import HomePage from './component/HomePage/HomePage';
 import ProductPage from './component/ProductPage/ProductPage';
 import MyOrders from './component/MyOrders/MyOrders';
+import Profile from './component/profile/Profile';
 
 
 function App() {
@@ -43,8 +44,8 @@ function App() {
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/checkout" element={<CheckoutPage />}/>
           <Route exact path="/retailer" element={<RetailerProductListing />}/>
-          <Route exact path="/addProduct" element={<RetailerAddProduct />}
-          />
+          <Route exact path="/addProduct" element={<RetailerAddProduct />}/>
+          <Route exact path="/profile" element={<Profile />}/>
         </Routes>
       </div>
     </BrowserRouter>
