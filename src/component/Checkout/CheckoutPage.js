@@ -14,7 +14,6 @@ const CheckoutPage = () => {
     const [formData, setFormData] = useState({ address: "", pinCode: "", cardNumber: "", cardHolder: "", cvv: "" })
     const [formDataError, setFormDataError] = useState({})
     const [selectedAddress, setSelectedAddress] = useState([])
-    const [selectedAddress, setSelectedAddress] = useState([])
     const [addressList, setAddressList] = useState([])
     console.log(location?.state?.currentUserId)
 
