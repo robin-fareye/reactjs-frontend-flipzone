@@ -46,7 +46,7 @@ const ProductDetails = ({productId, currentUserId, setCartItemCount}) => {
 
     const handleBuyNow =()=> {
         
-        navigate("/checkout", {state: {}})
+        navigate("/checkout", {state: {currentUserId: location?.state?.currentUserId}})
     }
 
     const description = prodDetails?.productDescription?.split("#")

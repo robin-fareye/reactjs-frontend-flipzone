@@ -16,7 +16,7 @@ const Cart = () => {
     useEffect(()=>{
         id=location?.state?.currentUserId
     },[])
-
+    console.log(id)
     const getItems = async (id) => {
         const res = await getCartItems(id)
         setItems(res?.data)

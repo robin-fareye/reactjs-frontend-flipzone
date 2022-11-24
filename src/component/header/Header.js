@@ -145,6 +145,7 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                     >
                         My Orders
                     </Button> */}
+
                     <Button
                         color="inherit"
                         variant='outlined'
@@ -153,6 +154,7 @@ const Header = ({userId, cartItemCount, setSearchText}) => {
                     >
                         Profile
                     </Button>
+
                     <Button
                         color="inherit"
                         sx={{ ml: 5, fontSize: 15 }}
