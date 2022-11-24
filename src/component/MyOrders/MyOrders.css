@@ -1,3 +1,25 @@
 .my-order-container{
     
 }
+
+.my-order-container{
+    border:1px solid black;
+}
+.order-item{
+    display: flex;
+}
+.order-item-image-container{
+    border: 1px solid black;;
+    max-width: 190px;
+
+    width: 20%;
+}
+
+.order-item-image{
+    height: 190px;
+    width: 190px;
+}
+.order-item-details{
+    border: 1px solid black;
+    width: 80%;
+}
